@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Vector;
 
 import javax.swing.JFileChooser;
@@ -71,6 +73,16 @@ public class FenetrePrincipale extends JFrame {
 		// INITIALISATION
 		// ici on initialise les composants
 		this.setJMenuBar(createMenuBar());
+		
+		final Plateau p = new Plateau();
+		p.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e)
+		    {
+		        p.repaint();
+		    }
+		});
+		pane.add(p);
 		
 		// POSITION
 		// ici on indique la taille et la position des composants
