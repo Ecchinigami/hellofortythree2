@@ -37,7 +37,7 @@ public class Plateau extends JPanel {
 		double w = size.getWidth();
 		double h = size.getHeight();
 
-		g2.drawRect((int) (w/2)-50, (int) (h/2)-50, 100, 100);
+		g2.drawRect((int) ((w/2)-(0.2*w)), (int) (h/2)-50, 100, 100);
 		g2.setColor(Color.blue);
 
 	}
