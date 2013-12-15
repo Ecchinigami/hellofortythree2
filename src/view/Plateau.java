@@ -35,7 +35,11 @@ public class Plateau extends JPanel {
 		boolean color = true;
 		g.setColor(Color.DARK_GRAY);
 		int marginWidth = (int) ((w%squareSize)/2);
+		if(marginWidth==0)
+			marginWidth=(int) squareSize/2;
 		int marginHeight = (int) ((h%squareSize)/2);
+		if(marginHeight==0)
+			marginHeight=(int) squareSize/2;
 		
 		for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
 			for(int j=marginHeight; j<h-squareSize; j+=squareSize) {
