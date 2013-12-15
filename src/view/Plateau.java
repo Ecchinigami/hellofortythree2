@@ -17,28 +17,38 @@ import javax.swing.JPanel;
 public class Plateau extends JPanel {
 
 	public Plateau() {		
+		setBackground(Color.BLACK);
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		Graphics2D g2 = (Graphics2D) g;
-
-		RenderingHints rh =
-				new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_ON);
-
-		rh.put(RenderingHints.KEY_RENDERING,
-				RenderingHints.VALUE_RENDER_QUALITY);
-
-		//g2.setRenderingHints(rh);
+		/*RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g.setRenderingHints(rh);*/
 
 		Dimension size = getSize();
 		double w = size.getWidth();
 		double h = size.getHeight();
-
-		g2.drawRect((int) ((w/2)-(0.2*w)), (int) (h/2)-50, 100, 100);
-		g2.setColor(Color.blue);
-
+		
+		int squareSize = 30;
+		boolean color = true;
+		g.setColor(Color.DARK_GRAY);
+		int marginWidth = (int) ((w%squareSize)/2);
+		int marginHeight = (int) ((h%squareSize)/2);
+		
+		for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
+			for(int j=marginHeight; j<h-squareSize; j+=squareSize) {
+				g.fillRect(i, j, 30, 30);
+				if(color) {
+					g.setColor(Color.LIGHT_GRAY);
+					color = false;
+				}
+				else {
+					g.setColor(Color.DARK_GRAY);
+					color = true;
+				}
+			}
+		}
 	}
 }
