@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ComponentEvent;
@@ -12,12 +13,14 @@ import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Plateau extends JPanel {
 
 	public Plateau() {		
-		setBackground(Color.BLACK);
+		setBackground(Color.DARK_GRAY);
 	}
 
 	public void paint(Graphics g) {
@@ -41,15 +44,18 @@ public class Plateau extends JPanel {
 		if(marginHeight==0)
 			marginHeight=(int) squareSize/2;
 		
+		Image grass = new ImageIcon("./res/image/block/grass.png").getImage();
+		Image stone = new ImageIcon("./res/image/block/stone.png").getImage();
+		
 		for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
 			for(int j=marginHeight; j<h-squareSize; j+=squareSize) {
-				g.fillRect(i, j, 30, 30);
+				
 				if(color) {
-					g.setColor(Color.LIGHT_GRAY);
+					g.drawImage(grass, i, j, 30, 30, null);
 					color = false;
 				}
 				else {
-					g.setColor(Color.DARK_GRAY);
+					g.drawImage(stone, i, j, 30, 30, null);
 					color = true;
 				}
 			}
