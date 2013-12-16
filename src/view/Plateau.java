@@ -25,18 +25,18 @@ public class Plateau extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-
-		/*RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		g.setRenderingHints(rh);*/
-
+		
+		// Récupération de la taille du panel
 		Dimension size = getSize();
 		double w = size.getWidth();
 		double h = size.getHeight();
 		
+		// Init de var en vrac'
 		int squareSize = 30;
 		boolean color = true;
 		g.setColor(Color.DARK_GRAY);
+		
+		// Calcul des marges
 		int marginWidth = (int) ((w%squareSize)/2);
 		if(marginWidth==0)
 			marginWidth=(int) squareSize/2;
@@ -44,9 +44,11 @@ public class Plateau extends JPanel {
 		if(marginHeight==0)
 			marginHeight=(int) squareSize/2;
 		
+		// Chargement des images
 		Image grass = new ImageIcon("./res/image/block/grass.png").getImage();
 		Image stone = new ImageIcon("./res/image/block/stone.png").getImage();
 		
+		// Dessin des cases du Plateau
 		for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
 			for(int j=marginHeight; j<h-squareSize; j+=squareSize) {
 				
