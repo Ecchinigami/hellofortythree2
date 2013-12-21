@@ -45,7 +45,7 @@ public class Plateau extends JPanel {
 			marginHeight=(int) squareSize/2;
 		
 		// Chargement des images
-		Image grass = new ImageIcon("./res/image/block/grass.png").getImage();
+		Image grass = new ImageIcon("./res/image/block/wood.png").getImage();
 		Image stone = new ImageIcon("./res/image/block/stone.png").getImage();
 		
 		// Dessin des cases du Plateau

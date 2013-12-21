@@ -1,4 +1,4 @@
-import view.FenetrePrincipale;
+import view.FenetreJeu;
 
 
 public class Main {
@@ -7,7 +7,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		FenetrePrincipale f = new FenetrePrincipale();
+		FenetreJeu f = new FenetreJeu();
 	}
 
 }

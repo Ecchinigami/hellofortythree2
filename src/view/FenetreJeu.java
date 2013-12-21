@@ -1,96 +1,123 @@
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.Vector;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-public class FenetrePrincipale extends JFrame {
+import controller.BtnListener;
 
-	public Vector  compose;
-	public Vector  myListener;
-
-
-
-	// DECLARATION DES ATTRIBUTS DE LA FENETRE
-	// il s'agit de variables qui ne concernent pas directement les composants
-
-
-	// DECLARATION DES COMPOSANTS
-	// les composants sont des attributs de la classe
-
-	//private ZoneDessinable lbl;
-	//private JButton btn;
-	/*private JButton btnRectangle;
-        private JButton btnRond;
-        private JButton btnEllipse;*/
+public class FenetreJeu extends JFrame {
 	
-	public FenetrePrincipale() {
+	public FenetreJeu() {
 		
 		super();	
 		
 		// initialisation de la fenêtre
 		setTitle("Hellofortythree !"); // indique le titre de la fenêtre
 
-		initVars();               // appelle la méthode initVars pour initialiser les variables
-		initComponents();         // appelle la méthode initComponents pour initialiser les composants
+		//initVars();               // appelle la méthode initVars pour initialiser les variables
+		//initComponents();         // appelle la méthode initComponents pour initialiser les composants
 
 		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenêtre
 		//setResizable(true); // empeche le redimensionnement de la fenêtre par l'utilisateur
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrête quand la fenêtre est fermée
 
+		init();
+		
 		pack(); // lance le calcul de la fenêtre
 		setLocationRelativeTo(null); // place la fenêtre au centre de l'écran
 		setVisible(true); // affiche la fenêtre
 	}
-
-
-	// INITIALISATION DES VARIABLES
-	// cette méthode n'est appelée qu'une fois
-	// lors de la création de la fenêtre (cf. constructeur)
-	private void initVars() {
-	}
-
-
-	// INITIALISATION DES COMPOSANTS
-	// cette méthode n'est appelée qu'une fois
-	// lors de la création de la fenêtre (cf. constructeur)
-	private void initComponents() {		
-		
+	
+	private void init() {
 		Container pane = getContentPane(); // récupère le panel principal
 		
-		// INITIALISATION
-		// ici on initialise les composants
-		this.setJMenuBar(createMenuBar());
+		CardLayout cl = new CardLayout();		
+		pane.setLayout(cl);
 		
-		final Plateau p = new Plateau();
-		p.addComponentListener(new ComponentAdapter() {
-		    @Override
-		    public void componentResized(ComponentEvent e)
-		    {
-		        p.repaint();
-		    }
-		});
-		pane.add(p);
+		pane.add(initMenu(), "Menu");
+		cl.show(pane, "Menu");
+	}
+	
+	private JPanel initMenu() {
 		
-		// POSITION
-		// ici on indique la taille et la position des composants
+		JPanel menu = new JPanel();
+        
+        menu.setBackground(Color.LIGHT_GRAY);
+        
+        // Création d'un gridbaglayout pour le menu
+        menu.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();        
+        c.fill = GridBagConstraints.BOTH; 
+        c.insets = new Insets(10,10,70,10);
+        
+        // Titre
+        c.gridy = 0; 
+        JLabel titre = new JLabel("Small World\n");
+        titre.setFont(new Font("Courrier", Font.BOLD, 50));
+        titre.setForeground(Color.BLACK);
+        menu.add(titre, c);
+        
+        c.insets = new Insets(10,10,10,10);
+        // Bouton Jouer
+        c.gridy = 1;    
+        Bouton jouer = new Bouton("Jouer");
+        menu.add(jouer, c);
+        
+        // Bouton A propos
+        c.gridy = 2;        
+        Bouton apropos = new Bouton("A propos"); 
+        menu.add(apropos, c);
+        
+        // Bouton Quitter
+        c.gridy = 3;
+        Bouton quitter = new Bouton("Quitter");   
+        menu.add(quitter, c);        
+        
+        jouer.addActionListener(new BtnListener("jouer", this));
+        apropos.addActionListener(new BtnListener("a propos", this));
+        quitter.addActionListener(new BtnListener("quitter", this));
+        
+        return menu;
+	}
+	
+	public void displayGame() {
 		
-
-		// EVENEMENTS
-		// ici on lie les composants aux événements
-		
+//		pane.removeAll();
+//
+//		//this.setJMenuBar(createMenuBar());
+//		
+//		final Plateau p = new Plateau();
+//		p.addComponentListener(new ComponentAdapter() {
+//		    @Override
+//		    public void componentResized(ComponentEvent e)
+//		    {
+//		        p.repaint();
+//		    }
+//		});
+//		pane.add(p);
+//		
+//        pack();
+//		repaint();
 	}
 	
 	private JMenuBar createMenuBar() {
