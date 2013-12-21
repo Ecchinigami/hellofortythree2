@@ -45,8 +45,8 @@ public class Plateau extends JPanel {
 			marginHeight=(int) squareSize/2;
 		
 		// Chargement des images
-		Image grass = new ImageIcon("./res/image/block/grass.png").getImage();
-		Image stone = new ImageIcon("./res/image/block/stone.png").getImage();
+		Image grass = new ImageIcon("./res/image/block/stone.png").getImage();
+		Image stone = new ImageIcon("./res/image/block/wood.png").getImage();
 		
 		// Dessin des cases du Plateau
 		for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
@@ -58,6 +58,15 @@ public class Plateau extends JPanel {
 				}
 				else {
 					g.drawImage(stone, i, j, 30, 30, null);
+					color = true;
+				}
+			}
+			int nbBlockHeight = (int) (h/squareSize);
+			if((nbBlockHeight)%2 == 0) {
+				if(color) {
+					color = false;
+				}
+				else {
 					color = true;
 				}
 			}
