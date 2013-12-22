@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -27,6 +28,9 @@ import controller.BtnListener;
 
 public class FenetreJeu extends JFrame {
 	
+	Container pane;
+	CardLayout cl;
+	
 	public FenetreJeu() {
 		
 		super();	
@@ -49,13 +53,19 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	private void init() {
-		Container pane = getContentPane(); // récupère le panel principal
+		pane = getContentPane(); // récupère le panel principal
 		
-		CardLayout cl = new CardLayout();		
+		cl = new CardLayout();		
 		pane.setLayout(cl);
 		
 		pane.add(initMenu(), "Menu");
+		pane.add(initGame(), "Game");
+		
 		cl.show(pane, "Menu");
+	}
+	
+	public void displayGame() {
+		cl.show(pane, "Game");
 	}
 	
 	private JPanel initMenu() {
@@ -100,24 +110,24 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
-	public void displayGame() {
+	public JPanel initGame() {
 		
-//		pane.removeAll();
-//
-//		//this.setJMenuBar(createMenuBar());
-//		
-//		final Plateau p = new Plateau();
-//		p.addComponentListener(new ComponentAdapter() {
-//		    @Override
-//		    public void componentResized(ComponentEvent e)
-//		    {
-//		        p.repaint();
-//		    }
-//		});
-//		pane.add(p);
-//		
-//        pack();
-//		repaint();
+		JPanel game = new JPanel();
+		//this.setJMenuBar(createMenuBar());
+		
+		final Plateau p = new Plateau();
+		p.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e)
+		    {
+		        p.repaint();
+		    }
+		});
+		
+		game.setLayout(new BorderLayout());
+		game.add(p);
+		
+		return game;
 	}
 	
 	private JMenuBar createMenuBar() {
