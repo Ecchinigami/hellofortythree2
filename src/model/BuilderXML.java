@@ -15,7 +15,10 @@ import org.xml.sax.SAXException;
 
 public class BuilderXML {
 	
-	public BuilderXML() {
+	public BuilderXML() {		
+	}
+	
+	public void chargmentXML(String path) {
 		/*
 	     * Etape 1 : récupération d'une instance de la classe "DocumentBuilderFactory"
 	     */
@@ -30,7 +33,7 @@ public class BuilderXML {
 		    /*
 		     * Etape 3 : Ouverture d'un Document
 		     */
-		    final Document document= builder.parse(new File("./res/xml/exemple2.xml"));
+		    final Document document= builder.parse(new File("path"));
 		    
 		    /*
 		     * Etape 4 : récupération de l'Element racine
@@ -68,5 +71,5 @@ public class BuilderXML {
 	    catch (final IOException e) {
 	        e.printStackTrace();
 	    }
-	}	
+	}
 }
