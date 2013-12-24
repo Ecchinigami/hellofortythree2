@@ -33,7 +33,7 @@ public class BuilderXML {
 		    /*
 		     * Etape 3 : Ouverture d'un Document
 		     */
-		    final Document document= builder.parse(new File("path"));
+		    final Document document= builder.parse(new File(path));
 		    
 		    /*
 		     * Etape 4 : récupération de l'Element racine
