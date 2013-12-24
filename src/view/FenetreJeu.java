@@ -14,7 +14,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,14 +39,12 @@ public class FenetreJeu extends JFrame {
 		
 		super();	
 		
-		// initialisation de la fenêtre
-		setTitle("Hellofortythree !"); // indique le titre de la fenêtre
+		setTitle("Hellofortythree !");
 
 		//initVars();               // appelle la méthode initVars pour initialiser les variables
 		//initComponents();         // appelle la méthode initComponents pour initialiser les composants
 
 		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenêtre
-		//setResizable(true); // empeche le redimensionnement de la fenêtre par l'utilisateur
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrête quand la fenêtre est fermée
 
 		init();
@@ -62,8 +64,13 @@ public class FenetreJeu extends JFrame {
 		pane.add(initGame(), "Game");
 		
 		cl.show(pane, "Menu");
+		
+		//this.setJMenuBar(createMenuBar());
 	}
 	
+	public void displayMenu() {
+		cl.show(pane, "Menu");
+	}
 	public void displayGame() {
 		cl.show(pane, "Game");
 	}
@@ -113,7 +120,8 @@ public class FenetreJeu extends JFrame {
 	public JPanel initGame() {
 		
 		JPanel game = new JPanel();
-		//this.setJMenuBar(createMenuBar());
+		
+		game.setLayout(new BorderLayout());
 		
 		final Plateau p = new Plateau();
 		p.addComponentListener(new ComponentAdapter() {
@@ -124,7 +132,17 @@ public class FenetreJeu extends JFrame {
 		    }
 		});
 		
-		game.setLayout(new BorderLayout());
+		Action doNothing = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		        displayMenu();
+		        System.out.println("pqsdqsd");
+		    }
+		};
+		//game.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "doNothing");
+		//game.getActionMap().put("doNothing", doNothing);
+		
+		p.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), doNothing);
+		
 		game.add(p);
 		
 		return game;

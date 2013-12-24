@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<carte hauteur="2" largeur="2">
+	<case decor="wood" individu="renard" objet="piege"/>
+	<case decor="wood" individu="poule" objet="vide"/>
+	<case decor="wood" individu="vide" objet="pomme"/>
+	<case decor="stone" individu="vide" objet="vide"/>
+</carte>

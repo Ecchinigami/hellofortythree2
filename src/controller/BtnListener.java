@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import view.FenetreJeu;
 
+
 /*
  * Cette classe contient les différentes actions des boutons 
  */
