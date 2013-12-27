@@ -8,4 +8,5 @@ public abstract class CaseDale {
     public Vector  myObjet;
     public Vector  myIndividu;
 
+    public boolean accessible;
 }
