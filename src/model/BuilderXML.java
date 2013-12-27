@@ -16,13 +16,13 @@ import org.xml.sax.SAXException;
 
 public class BuilderXML {
 	
-	String tab[][];
-	
 	public BuilderXML() {
-		tab=null;
 	}
 	
-	public void chargmentXML(String path) {
+	public String[][][] chargmentXML(String path) {
+		
+		String tab[][][] = null;
+		
 		/*
 	     * Etape 1 : récupération d'une instance de la classe "DocumentBuilderFactory"
 	     */
@@ -47,31 +47,43 @@ public class BuilderXML {
 		    // Affichage de l'élément racine
 		    System.out.println("\n*************Carte************");
 		    System.out.println("taille : " + racine.getAttribute("hauteur") + "x" + racine.getAttribute("largeur"));
-			int hauteur = Integer.parseInt(racine.getAttribute("hauteur"));
+			
+		    int hauteur = Integer.parseInt(racine.getAttribute("hauteur"));
 			int largeur = Integer.parseInt(racine.getAttribute("largeur"));
 		    
 		    // Initialisation du tableau
-		    //tab = String[2][2];
+			tab = new String[hauteur][largeur][3];
 		    
 		    /*
 		     * Etape 5 : récupération des cases
 		     */
 		    final Node racineNoeuds = (Node) racine.getChildNodes();
 		    final int nbRacineNoeuds = ((NodeList) racineNoeuds).getLength();
-				
-		    for (int i = 0; i<nbRacineNoeuds; i++) {
-		        if(((NodeList) racineNoeuds).item(i).getNodeType() == Node.ELEMENT_NODE) {
-		            final Element caseDale = (Element) ((NodeList) racineNoeuds).item(i);
+			
+		    int i = 0;
+		    int j = 0;
+		    
+		    for (int l = 0; l<nbRacineNoeuds; l++) {		    	
+		        if(((NodeList) racineNoeuds).item(l).getNodeType() == Node.ELEMENT_NODE) {
+		            final Element caseDale = (Element) ((NodeList) racineNoeuds).item(l);
 					
 				    //Affichage des cases
-				    System.out.println("\n*************Case************");
+				    System.out.println("\n*************Case "+j+"x"+i%largeur+"************");
 				    System.out.println("décor : " + caseDale.getAttribute("decor"));
 				    System.out.println("individu : " + caseDale.getAttribute("individu"));
 				    System.out.println("objet : " + caseDale.getAttribute("objet"));
 				    
 				    // Ajout au tableau
-				    tab[0][0] = caseDale.getAttribute("decor") + caseDale.getAttribute("individu") + caseDale.getAttribute("objet");
-		        }				
+				    tab[j][i%largeur][0] = caseDale.getAttribute("decor");
+				    tab[j][i%largeur][1] = caseDale.getAttribute("individu");
+				    tab[j][i%largeur][2] = caseDale.getAttribute("objet");
+				    
+			        i++;
+			        if(i!=0 && i%largeur==0) {
+			        	j++;
+			        }
+			        System.out.println("onh");
+		        }
 		    }			
 	    }
 	    catch (final ParserConfigurationException e) {
@@ -83,5 +95,7 @@ public class BuilderXML {
 	    catch (final IOException e) {
 	        e.printStackTrace();
 	    }
+	    
+		return tab;
 	}
 }
