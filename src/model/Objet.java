@@ -1,15 +1,10 @@
 package model;
 
-import java.util.Vector;
+public abstract class Objet {
 
-public class Objet extends CaseDale {
+    protected String nom;
 
-    public Carte myCarte;
-    public Vector  myCase_dale;
-
-    private String nom;
-    
-    public String getName(){
+	public String getName(){
             return this.nom;
     }
 }

@@ -1,8 +1,6 @@
 package model;
 
-import java.util.Vector;
-
-public class Individu extends CaseDale {
+public class Individu {
 	
     private int vie;
     private int attaque;
