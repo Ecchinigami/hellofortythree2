@@ -1,13 +1,16 @@
-import view.FenetrePrincipale;
+import model.BuilderXML;
+import view.FenetreJeu;
 
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		FenetrePrincipale f = new FenetrePrincipale();
-	}
+        /**
+         * @param args
+         */
+        public static void main(String[] args) {
+                //FenetreJeu f = new FenetreJeu();
+                BuilderXML b = new BuilderXML();
+                b.chargmentXML("./res/xml/exemple2.xml");
+        }
 
 }

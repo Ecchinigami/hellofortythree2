@@ -6,6 +6,6 @@ public class Main {
 
     public Vector  compose;
     public Carte myCarte;
-    public Vie_able myVie_able;
+    public VieAble myVie_able;
 
 }
