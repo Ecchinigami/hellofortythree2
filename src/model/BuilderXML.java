@@ -82,7 +82,6 @@ public class BuilderXML {
 			        if(i!=0 && i%largeur==0) {
 			        	j++;
 			        }
-			        System.out.println("onh");
 		        }
 		    }			
 	    }
