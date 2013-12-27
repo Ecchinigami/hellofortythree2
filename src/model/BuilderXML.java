@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,7 +16,10 @@ import org.xml.sax.SAXException;
 
 public class BuilderXML {
 	
-	public BuilderXML() {		
+	String tab[][];
+	
+	public BuilderXML() {
+		tab=null;
 	}
 	
 	public void chargmentXML(String path) {
@@ -40,10 +44,15 @@ public class BuilderXML {
 		     */
 		    final Element racine = document.getDocumentElement();
 			
-		    //Affichage de l'élément racine
+		    // Affichage de l'élément racine
 		    System.out.println("\n*************Carte************");
 		    System.out.println("taille : " + racine.getAttribute("hauteur") + "x" + racine.getAttribute("largeur"));
-			
+			int hauteur = Integer.parseInt(racine.getAttribute("hauteur"));
+			int largeur = Integer.parseInt(racine.getAttribute("largeur"));
+		    
+		    // Initialisation du tableau
+		    //tab = String[2][2];
+		    
 		    /*
 		     * Etape 5 : récupération des cases
 		     */
@@ -54,11 +63,14 @@ public class BuilderXML {
 		        if(((NodeList) racineNoeuds).item(i).getNodeType() == Node.ELEMENT_NODE) {
 		            final Element caseDale = (Element) ((NodeList) racineNoeuds).item(i);
 					
-			    //Affichage des cases
-			    System.out.println("\n*************Case************");
-			    System.out.println("décor : " + caseDale.getAttribute("decor"));
-			    System.out.println("individu : " + caseDale.getAttribute("individu"));
-			    System.out.println("objet : " + caseDale.getAttribute("objet"));
+				    //Affichage des cases
+				    System.out.println("\n*************Case************");
+				    System.out.println("décor : " + caseDale.getAttribute("decor"));
+				    System.out.println("individu : " + caseDale.getAttribute("individu"));
+				    System.out.println("objet : " + caseDale.getAttribute("objet"));
+				    
+				    // Ajout au tableau
+				    tab[0][0] = caseDale.getAttribute("decor") + caseDale.getAttribute("individu") + caseDale.getAttribute("objet");
 		        }				
 		    }			
 	    }
