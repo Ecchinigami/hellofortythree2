@@ -1,9 +1,9 @@
 package model;
 
-public class Individu {
+public abstract class Individu {
 	
-    private int vie;
-    private int attaque;
+    protected int vie;
+    protected int attaque;
     
     // A FAIRE
     public Action live(){

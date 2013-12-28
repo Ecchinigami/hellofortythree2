@@ -1,5 +1,5 @@
 package model;
 
-public class Renard extends Individu{
+public class Renard extends Individu {
 
 }
