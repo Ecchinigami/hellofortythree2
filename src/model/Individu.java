@@ -1,13 +1,10 @@
 package model;
 
-import java.util.Vector;
 
-public class Individu extends CaseDale {
+public abstract class Individu{
 
-    public Carte myCarte;
-    public Vector  myCase_dale;
-    private int vie;
-    private int attaque;
+	protected int vie;
+	protected int attaque;
     
     // A FAIRE
     public Action live(){
