@@ -13,7 +13,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
 public class BuilderXML {
+	
+	public static int hauteurTab;
+	public static int largeurTab;
 	
 	public BuilderXML() {		
 	}
@@ -43,7 +47,8 @@ public class BuilderXML {
 		    //Affichage de l'élément racine
 		    System.out.println("\n*************Carte************");
 		    System.out.println("taille : " + racine.getAttribute("hauteur") + "x" + racine.getAttribute("largeur"));
-			
+		    largeurTab = Integer.parseInt(racine.getAttribute("largeur"));
+		    hauteurTab = Integer.parseInt(racine.getAttribute("hauteur"));
 		    /*
 		     * Etape 5 : récupération des cases
 		     */

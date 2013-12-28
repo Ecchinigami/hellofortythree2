@@ -65,7 +65,7 @@ public class FenetreJeu extends JFrame {
 		
 		cl.show(pane, "Menu");
 		
-		//this.setJMenuBar(createMenuBar());
+		this.setJMenuBar(createMenuBar());
 	}
 	
 	public void displayMenu() {
