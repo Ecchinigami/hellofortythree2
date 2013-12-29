@@ -1,4 +1,5 @@
 import model.BuilderXML;
+import model.Carte;
 import view.FenetreJeu;
 
 
@@ -8,9 +9,14 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//FenetreJeu f = new FenetreJeu();
+		
+		FenetreJeu f = new FenetreJeu();
 		BuilderXML b = new BuilderXML();
-		b.chargmentXML("./res/xml/exemple2.xml");
+		
+		Carte c = new Carte();
+		c.initCarte(b.chargmentXML("./res/xml/exemple4x4.xml"));
+		
+		f.displayGame(c.getPlateau());
 	}
 
 }

@@ -37,7 +37,7 @@ public class BtnListener implements ActionListener {
            //fenetre.initComponents();
        }
        else if(lien.equals("jouer")) {
-           fenetre.displayGame();
+           //fenetre.displayGame();
        }
        else if(lien.equals("a propos")) {
            //fenetre.initApropos();

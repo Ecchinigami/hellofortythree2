@@ -1,11 +1,17 @@
 package model;
 
-public abstract class CaseDale {
+public class CaseDale {
 
     private boolean accessible;
     
     private Objet objet;
     private Individu individu;
+    
+    public CaseDale() {
+    	this.setAccessible(true);    	
+    	this.objet = null;
+    	this.individu = null;
+    }
     
     public CaseDale(boolean accessible) {
     	this.setAccessible(accessible);
@@ -20,7 +26,7 @@ public abstract class CaseDale {
 
 	public void setObjet(String type) {
     	switch (type) {
-	        case "nourriture":	objet = new Nourriture(type);
+	        case "pomme":	objet = new Nourriture(type);
 	        	break;
 	        default: objet=null;
 	        	break;
