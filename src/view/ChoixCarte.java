@@ -30,84 +30,91 @@ public class ChoixCarte extends JFrame{
 	
 	public ChoixCarte() {
 			
-			super();	
-			
-			setTitle("Hellofortythree !");
+		super();	
+		
+		setTitle("Hellofortythree !");
+
+		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenêtre
+		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrête quand la fenêtre est fermée
+
+		init();
+		
+		pack(); // lance le calcul de la fenêtre
+		setLocationRelativeTo(null); // place la fenêtre au centre de l'écran
+		setVisible(true); // affiche la fenêtre
+	}
+	private void init(){
+		pane = getContentPane(); // récupère le panel principal
+		
+		cl = new CardLayout();		
+		pane.setLayout(cl);
+		
+		pane.add(initMenu(), "Menu");
+		pane.add(initGame(), "Game");
+		
+		cl.show(pane, "Menu");
+		
+		//this.setJMenuBar(createMenuBar());
+	}
 	
-			setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenÃªtre
-			setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrÃªte quand la fenÃªtre est fermÃ©e
+	public void displayMenu() {
+		cl.show(pane, "Menu");
+	}
+	public void displayGame() {
+		cl.show(pane, "Game");
+	}
 	
-			init();
-			
-			pack(); // lance le calcul de la fenÃªtre
-			setLocationRelativeTo(null); // place la fenÃªtre au centre de l'Ã©cran
-			setVisible(true); // affiche la fenÃªtre
-		}
-		private void init(){
-			pane = getContentPane(); // rÃ©cupÃ¨re le panel principal
-			
-			cl = new CardLayout();		
-			pane.setLayout(cl);
-			
-			pane.add(initMenu(), "Menu");
-			
-			cl.show(pane, "Menu");
-			
-			//this.setJMenuBar(createMenuBar());
-		}
+	private JPanel initMenu() {
 		
+		JPanel menu = new JPanel();
+        
+        menu.setBackground(Color.LIGHT_GRAY);
+        
+        // Création d'un gridbaglayout pour le menu
+        menu.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();        
+        c.fill = GridBagConstraints.BOTH; 
+        c.insets = new Insets(10,10,70,10);
+        
+        // Titre
+        c.gridy = 0; 
+        JLabel titre = new JLabel("Choix de la carte\n");
+        titre.setFont(new Font("Courrier", Font.BOLD, 50));
+        titre.setForeground(Color.BLACK);
+        menu.add(titre, c);
+        
+        c.insets = new Insets(10,10,10,10);
+        // Bouton Parcourir
+        c.gridy = 1;    
+        Bouton Parcourir = new Bouton("Parcourir");
+        menu.add(Parcourir, c);
+        
+        Parcourir.addActionListener(new BtnCarte("Parcourir", this));
+        
+        return menu;
+	}
+	
+	public JPanel initGame() {
 		
-		private JPanel initMenu() {
-			
-			JPanel menu = new JPanel();
-	        
-	        menu.setBackground(Color.LIGHT_GRAY);
-	        
-	        // CrÃ©ation d'un gridbaglayout pour le menu
-	        menu.setLayout(new GridBagLayout());
-	        GridBagConstraints c = new GridBagConstraints();        
-	        c.fill = GridBagConstraints.BOTH; 
-	        c.insets = new Insets(10,10,70,10);
-	        
-	        // Titre
-	        c.gridy = 0; 
-	        JLabel titre = new JLabel("Choix de la carte\n");
-	        titre.setFont(new Font("Courrier", Font.BOLD, 50));
-	        titre.setForeground(Color.BLACK);
-	        menu.add(titre, c);
-	        
-	        c.insets = new Insets(10,10,10,10);
-	        // Bouton Parcourir
-	        c.gridy = 1;    
-	        Bouton Parcourir = new Bouton("Parcourir");
-	        menu.add(Parcourir, c);
-	        
-	        Parcourir.addActionListener(new BtnCarte("Parcourir", this));
-	        
-	        return menu;
-		}
+		JPanel game = new JPanel();
 		
-		public JPanel initGame() {
-			
-			JPanel game = new JPanel();
-			
-			game.setLayout(new BorderLayout());
-			
-			final Plateau p = new Plateau();
-			p.addComponentListener(new ComponentAdapter() {
-			    @Override
-			    public void componentResized(ComponentEvent e)
-			    {
-			        p.repaint();
-			    }
-			});
-			
+		game.setLayout(new BorderLayout());
+		
+		final Plateau p = new Plateau();
+		p.addComponentListener(new ComponentAdapter() {
+	    @Override
+	    public void componentResized(ComponentEvent e)
+	    {
+	        p.repaint();
+	    }
+		});
+		
 			Action doNothing = new AbstractAction() {
-			    public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {
 			        displayMenu();
 			        System.out.println("pqsdqsd");
-			    }
-			};
+		    }
+		};
 			//game.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "doNothing");
 			//game.getActionMap().put("doNothing", doNothing);
 			
@@ -116,12 +123,5 @@ public class ChoixCarte extends JFrame{
 			game.add(p);
 			
 			return game;
-		}
-		public void displayParcourir() {
-			// TODO Auto-generated method stub
-			cl.show(pane, "Parcourir");
-		}
-		public void displayMenu() {
-			cl.show(pane, "Menu");
 		}
 	}

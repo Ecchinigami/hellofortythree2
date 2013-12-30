@@ -1,11 +1,13 @@
 	package controller;
 
 	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
+import java.awt.event.ActionListener;
 
-	import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
-	import view.ChoixCarte;
+import model.BuilderXML;
+import view.ChoixCarte;
 
 	
 	public class BtnCarte implements ActionListener {
@@ -19,7 +21,7 @@
 	    }
 
 	    @Override
-	    public void actionPerformed(ActionEvent e) {    // cette mÃ©thode sera executÃ©e chaque fois que l'on actionne un bouton
+	    public void actionPerformed(ActionEvent e) {    // cette méthode sera executée chaque fois que l'on actionne un bouton
 
 	       if(lien.equals("acceuil")) {
 	           
@@ -35,7 +37,23 @@
 	       }
 
 	       else if(lien.equals("Parcourir")) {
-	           //carte.displayParcourir();
+	    	   // Objet BuilderXML
+	    	   BuilderXML b = new BuilderXML();
+	    	   
+	    	   // création de la boîte de dialogue
+               JFileChooser dialogue = new JFileChooser();
+
+               // affichage
+               dialogue.showOpenDialog(null);
+
+               // récupération du fichier sélectionné
+               System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
+               
+               
+               b.chargmentXML(dialogue.getSelectedFile().toString());
+               
+	    	   carte.displayGame();
+	    	   //carte.displayParcourir();
 	       }
 	    }
 }

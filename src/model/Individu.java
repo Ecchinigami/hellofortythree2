@@ -5,6 +5,7 @@ public abstract class Individu{
 
 	protected int vie;
 	protected int attaque;
+	protected int id = 1;
     
     // A FAIRE
     public Action live(){

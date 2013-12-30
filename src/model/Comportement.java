@@ -2,9 +2,15 @@ package model;
 
 public class Comportement {
 
-	private void perception(){}
+	private void perception(){
+		
+	}
     
-    private void decidion(){}
+    private void decidion(){
+    	
+    }
     
-    private void action(){}
+    private void action(){
+    	
+    }
 }

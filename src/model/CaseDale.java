@@ -4,8 +4,7 @@ import java.util.Vector;
 
 public abstract class CaseDale {
 
-private boolean accessible;
-    
+	private boolean accessible;
     private Objet objet;
     private Individu individu;
     

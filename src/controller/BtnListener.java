@@ -5,10 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import view.ChoixCarte;
 import view.FenetreJeu;
 
 /*
- * Cette classe contient les diffÃ©rentes actions des boutons 
+ * Cette classe contient les différentes actions des boutons 
  */
 public class BtnListener implements ActionListener {
 
@@ -21,7 +22,7 @@ public class BtnListener implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {    // cette mÃ©thode sera executÃ©e chaque fois que l'on actionne un bouton
+    public void actionPerformed(ActionEvent e) {    // cette méthode sera executée chaque fois que l'on actionne un bouton
 
        if(lien.equals("acceuil")) {
            
@@ -36,7 +37,9 @@ public class BtnListener implements ActionListener {
            //fenetre.initComponents();
        }
        else if(lien.equals("jouer")) {
-           fenetre.displayGame();
+    	   ChoixCarte c = new ChoixCarte();
+    	   fenetre.dispose();
+           //fenetre.displayGame();
        }
        else if(lien.equals("a propos")) {
            //fenetre.initApropos();

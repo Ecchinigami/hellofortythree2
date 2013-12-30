@@ -41,21 +41,21 @@ public class FenetreJeu extends JFrame {
 		
 		setTitle("Hellofortythree !");
 
-		//initVars();               // appelle la mÃ©thode initVars pour initialiser les variables
-		//initComponents();         // appelle la mÃ©thode initComponents pour initialiser les composants
+		//initVars();               // appelle la méthode initVars pour initialiser les variables
+		//initComponents();         // appelle la méthode initComponents pour initialiser les composants
 
-		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenÃªtre
-		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrÃªte quand la fenÃªtre est fermÃ©e
+		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenêtre
+		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrête quand la fenêtre est fermée
 
 		init();
 		
-		pack(); // lance le calcul de la fenÃªtre
-		setLocationRelativeTo(null); // place la fenÃªtre au centre de l'Ã©cran
-		setVisible(true); // affiche la fenÃªtre
+		pack(); // lance le calcul de la fenêtre
+		setLocationRelativeTo(null); // place la fenêtre au centre de l'écran
+		setVisible(true); // affiche la fenêtre
 	}
 	
 	private void init() {
-		pane = getContentPane(); // rÃ©cupÃ¨re le panel principal
+		pane = getContentPane(); // récupère le panel principal
 		
 		cl = new CardLayout();		
 		pane.setLayout(cl);
@@ -81,7 +81,7 @@ public class FenetreJeu extends JFrame {
         
         menu.setBackground(Color.LIGHT_GRAY);
         
-        // CrÃ©ation d'un gridbaglayout pour le menu
+        // Création d'un gridbaglayout pour le menu
         menu.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();        
         c.fill = GridBagConstraints.BOTH; 
@@ -152,7 +152,7 @@ public class FenetreJeu extends JFrame {
         
         JMenuBar menuBar = new JMenuBar();
         
-		// CrÃ©ation du menu Fichier
+		// Création du menu Fichier
         JMenu fichierMenu = new JMenu("File");
         
         JMenuItem item = new JMenuItem("Open");
@@ -172,7 +172,7 @@ public class FenetreJeu extends JFrame {
         
         fichierMenu.insertSeparator(2);
 
-        // CrÃ©ation du menu Editer
+        // Création du menu Editer
         JMenu editerMenu = new JMenu("Edit");
         
         item = new JMenuItem("Copy");
@@ -190,7 +190,7 @@ public class FenetreJeu extends JFrame {
         item.setAccelerator(KeyStroke.getKeyStroke('V', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         editerMenu.add(item);
         
-        // ajout des menus Ã  la barre de menu
+        // ajout des menus à la barre de menu
         menuBar.add(fichierMenu);
         menuBar.add(editerMenu);
         
@@ -199,18 +199,18 @@ public class FenetreJeu extends JFrame {
 	ActionListener afficherMenuListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-            //System.out.println("ElÃ©ment de menu [" + event.getActionCommand()+ "] utilisÃ©.");
+            //System.out.println("Elément de menu [" + event.getActionCommand()+ "] utilisé.");
             if ("Quit".equals(event.getActionCommand())) {
             	System.exit(0);
             }
             else if ("Open".equals(event.getActionCommand())) {
-                // crÃ©ation de la boÃ®te de dialogue
+                // création de la boîte de dialogue
                 JFileChooser dialogue = new JFileChooser();
 
                 // affichage
                 dialogue.showOpenDialog(null);
 
-                // rÃ©cupÃ©ration du fichier sÃ©lectionnÃ©
+                // récupération du fichier sélectionné
                 System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
                 
                 if(dialogue.getSelectedFile() != null){
