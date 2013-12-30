@@ -23,7 +23,7 @@ public class Carte {
                             plateau[i][j].setIndividu(individu);
                             plateau[i][j].setObjet(objet);
                             
-                            if(decor=="stone") {
+                            if(decor.equals("stone")) {
                                     plateau[i][j].setAccessible(false);
                             }
                             else {
