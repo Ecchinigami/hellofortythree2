@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import model.CaseDale;
 import controller.BtnCarte;
 
 public class ChoixCarte extends JFrame{
@@ -50,7 +51,6 @@ public class ChoixCarte extends JFrame{
 		pane.setLayout(cl);
 		
 		pane.add(initMenu(), "Menu");
-		pane.add(initGame(), "Game");
 		
 		cl.show(pane, "Menu");
 		
@@ -60,7 +60,8 @@ public class ChoixCarte extends JFrame{
 	public void displayMenu() {
 		cl.show(pane, "Menu");
 	}
-	public void displayGame() {
+	public void displayGame(CaseDale[][] plateau) {
+		pane.add(initGame(plateau), "Game");
 		cl.show(pane, "Game");
 	}
 	
@@ -94,13 +95,13 @@ public class ChoixCarte extends JFrame{
         return menu;
 	}
 	
-	public JPanel initGame() {
+	public JPanel initGame(CaseDale[][] plateau) {
 		
 		JPanel game = new JPanel();
 		
 		game.setLayout(new BorderLayout());
 		
-		final Plateau p = new Plateau();
+		final Plateau p = new Plateau(plateau);
 		p.addComponentListener(new ComponentAdapter() {
 	    @Override
 	    public void componentResized(ComponentEvent e)

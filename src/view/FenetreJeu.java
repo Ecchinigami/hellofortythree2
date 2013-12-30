@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import model.CaseDale;
 import controller.BtnListener;
 
 public class FenetreJeu extends JFrame {
@@ -61,7 +62,6 @@ public class FenetreJeu extends JFrame {
 		pane.setLayout(cl);
 		
 		pane.add(initMenu(), "Menu");
-		pane.add(initGame(), "Game");
 		
 		cl.show(pane, "Menu");
 		
@@ -71,7 +71,8 @@ public class FenetreJeu extends JFrame {
 	public void displayMenu() {
 		cl.show(pane, "Menu");
 	}
-	public void displayGame() {
+	public void displayGame(CaseDale[][] plateau) {
+		pane.add(initGame(plateau), "Game");
 		cl.show(pane, "Game");
 	}
 	
@@ -117,13 +118,13 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
-	public JPanel initGame() {
+	public JPanel initGame(CaseDale[][] plateau) {
 		
 		JPanel game = new JPanel();
 		
 		game.setLayout(new BorderLayout());
 		
-		final Plateau p = new Plateau();
+		final Plateau p = new Plateau(plateau);
 		p.addComponentListener(new ComponentAdapter() {
 		    @Override
 		    public void componentResized(ComponentEvent e)

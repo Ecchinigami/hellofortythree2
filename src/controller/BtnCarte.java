@@ -7,6 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import model.BuilderXML;
+import model.CaseDale;
 import view.ChoixCarte;
 
 	
@@ -51,8 +52,8 @@ import view.ChoixCarte;
                
                
                b.chargmentXML(dialogue.getSelectedFile().toString());
-               
-	    	   carte.displayGame();
+
+	    	   //carte.displayGame(plateau);
 	    	   //carte.displayParcourir();
 	       }
 	    }
