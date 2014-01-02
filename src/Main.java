@@ -16,7 +16,7 @@ public class Main {
 		Carte c = new Carte();
 		c.initCarte(b.chargmentXML("./res/xml/exemple4x4.xml"));
 		
-		f.displayGame(c.getPlateau());
+		f.displayGame(c);
 	}
 
 }

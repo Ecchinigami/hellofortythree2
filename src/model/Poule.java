@@ -11,4 +11,8 @@ public class Poule extends Individu {
         this.vie = vie;
         this.attaque = attaque;
 	}
+	
+	public String toString() {
+		return "poule";
+	}
 }

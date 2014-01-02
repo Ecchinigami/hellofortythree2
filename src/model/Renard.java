@@ -11,4 +11,8 @@ public class Renard extends Individu {
         this.vie = vie;
         this.attaque = attaque;
 	}
+	
+	public String toString() {
+		return "renard";
+	}
 }

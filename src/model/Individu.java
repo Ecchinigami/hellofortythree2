@@ -29,5 +29,6 @@ public abstract class Individu {
     public void retireVie(int dommage){
             this.vie = this.vie - dommage;
     }
-
+    
+	public abstract String toString();
 }

@@ -11,4 +11,8 @@ public class Vipere extends Individu {
         this.vie = vie;
         this.attaque = attaque;
 	}
+	
+	public String toString() {
+		return "vipere";
+	}
 }
