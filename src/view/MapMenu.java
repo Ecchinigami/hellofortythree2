@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,8 +21,10 @@ import model.BuilderXML;
 import model.Carte;
 
 public class MapMenu extends JPanel implements ListSelectionListener {
-
+	
+	private CardLayout clPreview;	
 	private JPanel preview;
+	
 	private JList list;
 
 	private String defaultXMLPath = "./res/xml/";
@@ -64,7 +67,9 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		c.gridheight = 2;
 		c.gridx = 1;
 		c.gridy = 0;
-		preview = new JPanel();  
+		preview = new JPanel(); 		
+		clPreview = new CardLayout();		
+		preview.setLayout(clPreview);
 		preview.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
 		this.add(preview, c);
 
@@ -89,12 +94,10 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		if (!lse.getValueIsAdjusting()) {  			
 			BuilderXML b = new BuilderXML();
 			Carte c = new Carte();
-			c.initCarte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));
+			c.initCarte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));		
 			
-			preview = new Plateau(c);
-			
-			this.revalidate();
-			this.repaint();
+			preview.add(new Plateau(c));
+			clPreview.next(preview);
 		}
 	}
 }
