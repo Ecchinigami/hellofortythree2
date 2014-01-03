@@ -3,7 +3,12 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import model.BuilderXML;
+import model.Carte;
 
 import view.FenetreJeu;
 
@@ -37,7 +42,18 @@ public class BtnListener implements ActionListener {
            //fenetre.initComponents();
        }
        else if(lien.equals("jouer")) {
-           //fenetre.displayGame();
+    	   
+           JFileChooser chooser = new JFileChooser();
+           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
+           chooser.setFileFilter(filter);
+           chooser.showOpenDialog(null);
+           
+           if(chooser.getSelectedFile() != null){
+        	   BuilderXML b = new BuilderXML();
+        	   Carte c = new Carte();
+        	   c.initCarte(b.chargmentXML(chooser.getSelectedFile().getPath()));
+        	   FenetreJeu.displayGame(c);
+           }
        }
        else if(lien.equals("a propos")) {
            //fenetre.initApropos();

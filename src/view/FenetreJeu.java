@@ -17,6 +17,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -37,8 +39,8 @@ import controller.BtnListener;
 
 public class FenetreJeu extends JFrame {
 	
-	Container pane;
-	CardLayout cl;
+	private static Container pane;
+	private static CardLayout cl;
 	
 	public FenetreJeu() {
 		
@@ -71,10 +73,10 @@ public class FenetreJeu extends JFrame {
 		//this.setJMenuBar(createMenuBar());
 	}
 	
-	public void displayMenu() {
+	public static void displayMenu() {
 		cl.show(pane, "Menu");
 	}
-	public void displayGame(Carte c) {
+	public static void displayGame(Carte c) {
 		pane.add(initGame(c), "Game");
 		cl.show(pane, "Game");
 	}
@@ -121,7 +123,7 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
-	public JPanel initGame(Carte c) {
+	private static JPanel initGame(Carte c) {
 		
 		JPanel game = new JPanel();
 		
@@ -129,16 +131,6 @@ public class FenetreJeu extends JFrame {
 		
 		Plateau p = new Plateau(c);
 		
-//		Action doNothing = new AbstractAction() {
-//		    public void actionPerformed(ActionEvent e) {
-//		        displayMenu();
-//		        System.out.println("pqsdqsd");
-//		    }
-//		};
-//		game.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "doNothing");
-//		game.getActionMap().put("doNothing", doNothing);
-//		
-//		p.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), doNothing);
 		game.add(p);
 		
 		return game;
@@ -195,8 +187,7 @@ public class FenetreJeu extends JFrame {
 	ActionListener afficherMenuListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-            //System.out.println("Elément de menu [" + event.getActionCommand()+ "] utilisé.");
-            if ("Quit".equals(event.getActionCommand())) {
+        	if ("Quit".equals(event.getActionCommand())) {
             	System.exit(0);
             }
             else if ("Open".equals(event.getActionCommand())) {

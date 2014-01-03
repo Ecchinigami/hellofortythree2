@@ -11,12 +11,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		FenetreJeu f = new FenetreJeu();
-		BuilderXML b = new BuilderXML();
+//		BuilderXML b = new BuilderXML();
+//		
+//		Carte c = new Carte();
+//		c.initCarte(b.chargmentXML("./res/xml/exemple4x4.xml"));
 		
-		Carte c = new Carte();
-		c.initCarte(b.chargmentXML("./res/xml/exemple4x4.xml"));
-		
-		f.displayGame(c);
+		//f.displayGame(c);
 	}
 
 }

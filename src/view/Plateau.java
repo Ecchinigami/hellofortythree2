@@ -8,16 +8,23 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import model.Carte;
 import model.CaseDale;
@@ -47,6 +54,7 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 	public Plateau(Carte c) {
 		
 		addMouseWheelListener(this);
+		keyBinding();
 		
 		this.plateau = c.getPlateau();
 		this.decor = c.getDecor();
@@ -131,6 +139,20 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 			}
 			blockWidth++;
 		}
+	}
+	
+	public void keyBinding() {
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escape");
+		this.getActionMap().put("escape", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	JOptionPane jop = new JOptionPane();			
+            	int option = jop.showConfirmDialog(null, "Voulez-vous quitter la partie ?", "Quitter partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            	if(option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION && option != JOptionPane.CLOSED_OPTION) {
+            		view.FenetreJeu.displayMenu();
+            	}
+            }
+        });
 	}
 
 	@Override
