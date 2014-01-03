@@ -17,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.BtnListener;
+
 import model.BuilderXML;
 import model.Carte;
 
@@ -81,10 +83,23 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		c.gridx = 0;
 		c.gridy = 2;
 		JPanel option = new JPanel(new GridLayout(2,2));
-		option.add(new Bouton("Ouvrir un autre fichier"));
-		option.add(new Bouton("Ajouter un fichier"));
-		option.add(new Bouton("Retour"));
-		option.add(new Bouton("Jouer"));
+		
+		Bouton ouvrirFichier = new Bouton("Ouvrir un autre fichier");
+		ouvrirFichier.addActionListener(new BtnListener("ouvrirFichier"));		
+		option.add(ouvrirFichier);	
+		
+		Bouton ajouterFichier = new Bouton("Ajouter un fichier");
+		ajouterFichier.addActionListener(new BtnListener("ajouterFichier"));		
+		option.add(ajouterFichier);
+		
+		Bouton retour = new Bouton("Retour");
+		retour.addActionListener(new BtnListener("retour"));
+		option.add(retour);		
+		
+		Bouton jouer = new Bouton("Jouer");
+		jouer.addActionListener(new BtnListener("jouer"));
+		option.add(jouer);
+		
 		option.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
 		this.add(option, c);
 	}

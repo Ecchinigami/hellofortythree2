@@ -20,7 +20,11 @@ public class BtnListener implements ActionListener {
 
     private String lien; 
     private FenetreJeu fenetre;
-
+    
+    public BtnListener(String lien) {
+        this.lien=lien;
+    }
+    
     public BtnListener(String lien, FenetreJeu fenetre) {
         this.lien=lien;
         this.fenetre=fenetre;
@@ -39,23 +43,23 @@ public class BtnListener implements ActionListener {
             }           
        } 
        else if(lien.equals("retour")) {
-           //fenetre.initComponents();
+    	   FenetreJeu.displayMenu();
        }
-       else if(lien.equals("jouer")) {
-    	   
+       else if(lien.equals("jouer")) {    	   
     	   FenetreJeu.displayMapMenu();
-    	   
-//           JFileChooser chooser = new JFileChooser();
-//           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
-//           chooser.setFileFilter(filter);
-//           chooser.showOpenDialog(null);
-//           
-//           if(chooser.getSelectedFile() != null){
-//        	   BuilderXML b = new BuilderXML();
-//        	   Carte c = new Carte();
-//        	   c.initCarte(b.chargmentXML(chooser.getSelectedFile().getPath()));
-//        	   FenetreJeu.displayGame(c);
-//           }
+       }
+       else if(lien.equals("ouvrirFichier")) {
+           JFileChooser chooser = new JFileChooser();
+           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
+           chooser.setFileFilter(filter);
+           chooser.showOpenDialog(null);
+           
+           if(chooser.getSelectedFile() != null){
+        	   BuilderXML b = new BuilderXML();
+        	   Carte c = new Carte();
+        	   c.initCarte(b.chargmentXML(chooser.getSelectedFile().getPath()));
+        	   FenetreJeu.displayGame(c);
+           }
        }
        else if(lien.equals("a propos")) {
            //fenetre.initApropos();
