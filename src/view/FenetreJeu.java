@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,18 +20,25 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.Vector;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.Carte;
 import model.CaseDale;
@@ -80,7 +88,11 @@ public class FenetreJeu extends JFrame {
 		pane.add(initGame(c), "Game");
 		cl.show(pane, "Game");
 	}
-	
+	public static void displayMapMenu() {
+		pane.add(initMapMenu(), "MapMenu");
+		cl.show(pane, "MapMenu");
+	}
+
 	private JPanel initMenu() {
 		
 		JPanel menu = new JPanel();
@@ -134,6 +146,11 @@ public class FenetreJeu extends JFrame {
 		game.add(p);
 		
 		return game;
+	}
+	
+	private static JPanel initMapMenu() {
+		MapMenu mapMenu = new MapMenu();   
+		return mapMenu;
 	}
 	
 	private JMenuBar createMenuBar() {

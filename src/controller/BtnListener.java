@@ -43,17 +43,19 @@ public class BtnListener implements ActionListener {
        }
        else if(lien.equals("jouer")) {
     	   
-           JFileChooser chooser = new JFileChooser();
-           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
-           chooser.setFileFilter(filter);
-           chooser.showOpenDialog(null);
-           
-           if(chooser.getSelectedFile() != null){
-        	   BuilderXML b = new BuilderXML();
-        	   Carte c = new Carte();
-        	   c.initCarte(b.chargmentXML(chooser.getSelectedFile().getPath()));
-        	   FenetreJeu.displayGame(c);
-           }
+    	   FenetreJeu.displayMapMenu();
+    	   
+//           JFileChooser chooser = new JFileChooser();
+//           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
+//           chooser.setFileFilter(filter);
+//           chooser.showOpenDialog(null);
+//           
+//           if(chooser.getSelectedFile() != null){
+//        	   BuilderXML b = new BuilderXML();
+//        	   Carte c = new Carte();
+//        	   c.initCarte(b.chargmentXML(chooser.getSelectedFile().getPath()));
+//        	   FenetreJeu.displayGame(c);
+//           }
        }
        else if(lien.equals("a propos")) {
            //fenetre.initApropos();
