@@ -12,26 +12,72 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 import model.Poule;
 import model.Renard;
 import model.Vipere;
 import model.CaseDale;
 
-public class Plateau extends JPanel {
-	
-	CaseDale[][] plateau;
-	
-	public Plateau(CaseDale[][] plateau) {
-		this.plateau = plateau;
-		
-		setBackground(Color.DARK_GRAY);
-	}
+import model.Carte;
 
+public class Plateau extends JPanel implements MouseWheelListener, ComponentListener {
+
+
+	private CaseDale[][] plateau;
+	private String[][] decor;
+	
+	private int squareSize;
+	
+	// Decor
+    private Image wood;
+    private Image stone;
+    private Image grass;
+    private Image dirt;
+    // Objet
+    private Image pomme;
+    // Individu  
+    private Image whiteDownStand;
+    private Image redDownStand;
+    private Image blackDownStand;
+    
+    public Plateau(Carte c) {
+        
+        addMouseWheelListener(this);
+        keyBinding();
+        
+        this.plateau = c.getPlateau();
+        this.decor = c.getDecor();
+    
+        // Init de caractéristiques internes
+        setBackground(Color.DARK_GRAY);
+        squareSize = 30;
+    
+        // Chargement des images
+        wood = new ImageIcon("./res/image/block/wood.png").getImage();
+        stone = new ImageIcon("./res/image/block/stone.png").getImage();
+        grass = new ImageIcon("./res/image/block/grass.png").getImage();
+        dirt = new ImageIcon("./res/image/block/dirt.png").getImage();
+    
+        pomme = new ImageIcon("./res/image/item/apple.png").getImage();
+    
+        whiteDownStand = new ImageIcon("./res/image/character/white/downStand.png").getImage();
+        redDownStand = new ImageIcon("./res/image/character/red/downStand.png").getImage();
+        blackDownStand = new ImageIcon("./res/image/character/black/downStand.png").getImage();
+      }
+    
 	public void paint(Graphics g) {
         super.paint(g);
 
@@ -39,49 +85,104 @@ public class Plateau extends JPanel {
         Dimension size = getSize();
         double w = size.getWidth();
         double h = size.getHeight();
-        //h = BuilderXML.hauteurTab;
-        //w = BuilderXML.largeurTab;
 
         // Calcul des dimensions des blocks
         int nbBlockWidth = plateau[0].length;
         int nbBlockHeigh = plateau[1].length;
-        int squareSize = 30;
 
         // Calcul des marges
-        int marginWidth = (int) ((w%squareSize)/2);
-        if(marginWidth==0)
-                marginWidth=(int) squareSize/2;
-        int marginHeight = (int) ((h%squareSize)/2);
-        if(marginHeight==0)
-                marginHeight=(int) squareSize/2;
-
-        // Chargement des images
-        Image wood = new ImageIcon("./res/image/block/wood.png").getImage();
-        Image stone = new ImageIcon("./res/image/block/stone.png").getImage();
-        Image grass = new ImageIcon("./res/image/block/grass.png").getImage();
-        Image dirt = new ImageIcon("./res/image/block/dirt.png").getImage();
-         
-        Image pomme = new ImageIcon("./res/image/item/apple.png").getImage();
-        
-        Image whiteDownStand = new ImageIcon("./res/image/white/downStand.png").getImage();
-        
+        int marginWidth = (int) ((w-(squareSize*nbBlockWidth))/2);
+        int marginHeight = (int) ((h-(squareSize*nbBlockHeigh))/2);
+    
         // Dessin des cases du Plateau
-        int blockHeigh = 0;
-        int blockWidth = 0;
-        
-        for(int i=marginWidth; i<w-squareSize; i+=squareSize) {
-            for(int j=marginHeight; j<h-squareSize; j+=squareSize) {
-		        if(blockWidth<nbBlockWidth && blockHeigh<nbBlockHeigh) {
-		        	 if(plateau[blockHeigh][blockWidth].getObjet()!=null) {
-		        	   switch (plateau[blockHeigh][blockWidth].getObjet().getName()) {
-		        	         case "pomme":  g.drawImage(pomme, i, j, squareSize, squareSize, null);
-		        	           break;  
-		        	   }
-		        	 }
-		         }
-		        blockHeigh++;
+
+        int blockHeigh=0;
+        int blockWidth=0;
+    
+        for(int i=marginWidth; i<w-marginWidth-1; i+=squareSize) {
+          for(int j=marginHeight; j<h-marginHeight-1; j+=squareSize) {
+    
+            if(blockWidth<nbBlockWidth && blockHeigh<nbBlockHeigh) {
+              // Dessin du decor
+              if(decor[blockHeigh][blockWidth]!=null) {
+                switch (decor[blockHeigh][blockWidth]) {
+                  case "wood":  g.drawImage(wood, i, j, squareSize, squareSize, null);
+                    break;
+                  case "stone":  g.drawImage(stone, i, j, squareSize, squareSize, null);
+                    break;
+                  case "grass":  g.drawImage(grass, i, j, squareSize, squareSize, null);
+                    break;
+                  case "dirt":  g.drawImage(dirt, i, j, squareSize, squareSize, null);
+                    break;
+                }
+              }
+              // Dessin des objets
+              if(plateau[blockHeigh][blockWidth].getObjet()!=null) {
+                switch (plateau[blockHeigh][blockWidth].getObjet().getName()) {
+                  case "pomme":  g.drawImage(pomme, i, j, squareSize, squareSize, null);
+                    break;  
+                }
+              }
+              // Dessin des individus
+              if(plateau[blockHeigh][blockWidth].getIndividu()!=null) {
+                switch (plateau[blockHeigh][blockWidth].getIndividu().toString()) {
+                  case "poule":  g.drawImage(whiteDownStand, i, j, squareSize, squareSize, null);
+                    break;
+                  case "renard":  g.drawImage(redDownStand, i, j, squareSize, squareSize, null);
+                    break;  
+                  case "vipere":  g.drawImage(blackDownStand, i, j, squareSize, squareSize, null);
+                        break;
+                }
+              }
             }
-            blockWidth++;
+            blockHeigh++;
+            if(blockHeigh==nbBlockHeigh) {
+              blockHeigh=0;
+            }
+          }
+          blockWidth++;
         }
-	}
+      }
+	public void keyBinding() {
+	     this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escape");
+	     this.getActionMap().put("escape", new AbstractAction() {
+	             @Override
+	             public void actionPerformed(ActionEvent e) {
+	               JOptionPane jop = new JOptionPane();      
+	               int option = jop.showConfirmDialog(null, "Voulez-vous quitter la partie ?", "Quitter partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	               if(option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION && option != JOptionPane.CLOSED_OPTION) {
+	                 view.FenetreJeu.displayMenu();
+	               }
+	             }
+	         });
+	   }
+	@Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+      int notches = e.getWheelRotation();
+      if (notches < 0) {
+        squareSize+=5;
+      } else {
+        if (squareSize>30) {
+          squareSize-=5;
+        }
+      }
+      repaint();
+    }
+  
+    @Override
+    public void componentResized(ComponentEvent arg0) {
+      repaint();
+    }
+  
+    @Override
+    public void componentHidden(ComponentEvent arg0) {
+    }
+    
+    @Override
+    public void componentMoved(ComponentEvent arg0) {
+    }
+  
+    @Override
+    public void componentShown(ComponentEvent arg0) {
+    }
 }

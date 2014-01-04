@@ -1,7 +1,7 @@
 package model;
 
 public class Action {
-	private String direction;
-	private Individu attaque;
-	private Objet mange;
+	public String direction;
+	public Individu attaque;
+	public Objet mange;
 }

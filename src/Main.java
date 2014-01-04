@@ -8,6 +8,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		FenetreJeu fp = new FenetreJeu();
+		FenetreJeu f = new FenetreJeu();
 	}
 }

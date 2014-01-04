@@ -1,16 +1,10 @@
 package model;
 
-public class Comportement {
+public abstract class Comportement {
 
-	private void perception(){
-		
-	}
+	abstract String[][] perception(CaseDale[][] c, int x, int y);
     
-    private void decidion(){
-    	
-    }
+	abstract String decision(String[][] aire, String individu);
     
-    private void action(){
-    	
-    }
+	abstract String action(String ordre, int posx, int posy);
 }

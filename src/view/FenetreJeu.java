@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -29,12 +33,14 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import model.CaseDale;
+
+import model.Carte;
 import controller.BtnListener;
 
 public class FenetreJeu extends JFrame {
 	
-	Container pane;
-	CardLayout cl;
+	private static Container pane;
+	private static CardLayout cl;
 	
 	public FenetreJeu() {
 		
@@ -62,18 +68,17 @@ public class FenetreJeu extends JFrame {
 		pane.setLayout(cl);
 		
 		pane.add(initMenu(), "Menu");
-		
 		cl.show(pane, "Menu");
 		
 		this.setJMenuBar(createMenuBar());
 	}
 	
-	public void displayMenu() {
+	public static void displayMenu() {
 		cl.show(pane, "Menu");
 	}
-	public void displayGame(CaseDale[][] plateau) {
-		pane.add(initGame(plateau), "Game");
-		cl.show(pane, "Game");
+
+	public static void displayGame(Carte c) {
+		pane.add(initGame(c), "Game");
 	}
 	
 	private JPanel initMenu() {
@@ -118,32 +123,15 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
-	public JPanel initGame(CaseDale[][] plateau) {
+
+	private static JPanel initGame(Carte c) {
 		
 		JPanel game = new JPanel();
 		
 		game.setLayout(new BorderLayout());
 		
-		final Plateau p = new Plateau(plateau);
-		p.addComponentListener(new ComponentAdapter() {
-		    @Override
-		    public void componentResized(ComponentEvent e)
-		    {
-		        p.repaint();
-		    }
-		});
-		
-		Action doNothing = new AbstractAction() {
-		    public void actionPerformed(ActionEvent e) {
-		        displayMenu();
-		        System.out.println("pqsdqsd");
-		    }
-		};
-		//game.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "doNothing");
-		//game.getActionMap().put("doNothing", doNothing);
-		
-		p.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), doNothing);
-		
+		Plateau p = new Plateau(c);
+	
 		game.add(p);
 		
 		return game;
@@ -200,7 +188,7 @@ public class FenetreJeu extends JFrame {
 	ActionListener afficherMenuListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-            //System.out.println("Elément de menu [" + event.getActionCommand()+ "] utilisé.");
+            
             if ("Quit".equals(event.getActionCommand())) {
             	System.exit(0);
             }

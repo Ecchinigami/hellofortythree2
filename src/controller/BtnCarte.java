@@ -7,12 +7,19 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import model.BuilderXML;
+
+import model.Carte;
+import model.CaseDale;
+import model.Individu;
+import model.VieAble;
+
 import model.CaseDale;
 import view.ChoixCarte;
 
 	
 	public class BtnCarte implements ActionListener {
-
+		
+		public static Carte map;
 	    private String lien; 
 	    private ChoixCarte carte;
 
@@ -40,6 +47,7 @@ import view.ChoixCarte;
 	       else if(lien.equals("Parcourir")) {
 	    	   // Objet BuilderXML
 	    	   BuilderXML b = new BuilderXML();
+	    	   map = new Carte();
 	    	   
 	    	   // création de la boîte de dialogue
                JFileChooser dialogue = new JFileChooser();
@@ -53,8 +61,17 @@ import view.ChoixCarte;
                
                b.chargmentXML(dialogue.getSelectedFile().toString());
 
+
+               
+               map.initCarte(b.chargmentXML(dialogue.getSelectedFile().toString()));
+       		
+	    	   carte.displayGame(map);
+
 	    	   //carte.displayGame(plateau);
 	    	   //carte.displayParcourir();
+	    	   
+	    	   VieAble thread = new VieAble();
+	    	   thread.start();	    	   
 	       }
 	    }
 }

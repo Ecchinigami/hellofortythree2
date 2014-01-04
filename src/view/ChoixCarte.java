@@ -22,6 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import model.Carte;
+
 import model.CaseDale;
 import controller.BtnCarte;
 
@@ -60,8 +62,8 @@ public class ChoixCarte extends JFrame{
 	public void displayMenu() {
 		cl.show(pane, "Menu");
 	}
-	public void displayGame(CaseDale[][] plateau) {
-		pane.add(initGame(plateau), "Game");
+	public void displayGame(Carte c) {
+		pane.add(initGame(c), "Game");
 		cl.show(pane, "Game");
 	}
 	
@@ -94,35 +96,17 @@ public class ChoixCarte extends JFrame{
         
         return menu;
 	}
+
+	private static JPanel initGame(Carte c) {
 	
-	public JPanel initGame(CaseDale[][] plateau) {
-		
 		JPanel game = new JPanel();
 		
 		game.setLayout(new BorderLayout());
-		
-		final Plateau p = new Plateau(plateau);
-		p.addComponentListener(new ComponentAdapter() {
-	    @Override
-	    public void componentResized(ComponentEvent e)
-	    {
-	        p.repaint();
-	    }
-		});
-		
-			Action doNothing = new AbstractAction() {
-				public void actionPerformed(ActionEvent e) {
-			        displayMenu();
-			        System.out.println("pqsdqsd");
-		    }
-		};
-			//game.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "doNothing");
-			//game.getActionMap().put("doNothing", doNothing);
+
+		Plateau p = new Plateau(c);
+
+		game.add(p);
 			
-			p.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), doNothing);
-			
-			game.add(p);
-			
-			return game;
+		return game;
 		}
 	}
