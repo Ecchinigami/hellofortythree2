@@ -24,34 +24,42 @@ public class CaseDale {
 		this.accessible = accessible;
 	}
 
-	public void setObjet(String type) {
-    	switch (type) {
+	public boolean getAccessible() {
+		return accessible;
+	}
+
+	public void initObjet(String type) {
+		switch (type) {
 	        case "pomme":	objet = new Nourriture(type);
 	        	break;
 	        default: objet=null;
 	        	break;
-    	}
-    }
-    
-    public void setIndividu(String type) {
-    	switch (type) {
-	        case "poule":	individu = new Poule();
-	        	break;
-	        case "renard":	individu = new Renard();
-        		break;
-	        case "vipere":	individu = new Vipere();
-        		break;
-	        default: individu=null;
-        		break;
 		}
-    }
-    
-    public boolean getAccessible() {
-		return accessible;
 	}
+
+	public void setObjet(Objet objet) {
+		this.objet = objet;    	
+    }
     
     public Objet getObjet() {
 		return objet;    	
+	}
+
+	public void initIndividu(String type) {
+		switch (type) {
+	        case "poule":	individu = new Poule();
+	        	break;
+	        case "renard":	individu = new Renard();
+	    		break;
+	        case "vipere":	individu = new Vipere();
+	    		break;
+	        default: individu=null;
+	    		break;
+		}
+	}
+
+	public void setIndividu(Individu individu) {	
+		this.individu = individu; 
     }
     
     public Individu getIndividu() {

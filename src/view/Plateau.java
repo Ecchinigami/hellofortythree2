@@ -25,6 +25,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 import model.Carte;
 import model.CaseDale;
@@ -33,7 +34,8 @@ import model.Renard;
 import model.Vipere;
 
 public class Plateau extends JPanel implements MouseWheelListener, ComponentListener {
-
+	
+	private Carte carte;
 	private CaseDale[][] plateau;
 	private String[][] decor;
 	
@@ -53,11 +55,14 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 
 	public Plateau(Carte c) {
 		
-		addMouseWheelListener(this);
-		keyBinding();
+		//SwingUtilities.invokeLater(new Runnable() { public void run() { repaint(); }});
 		
+		this.carte = c;
 		this.plateau = c.getPlateau();
 		this.decor = c.getDecor();
+		
+		addMouseWheelListener(this);
+		keyBinding();
 
 		// Init de caractéristiques internes
 		setBackground(Color.DARK_GRAY);
@@ -145,9 +150,8 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escape");
 		this.getActionMap().put("escape", new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-            	JOptionPane jop = new JOptionPane();			
-            	int option = jop.showConfirmDialog(null, "Voulez-vous quitter la partie ?", "Quitter partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            public void actionPerformed(ActionEvent e) {			
+            	int option = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter la partie ?", "Quitter partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             	if(option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION && option != JOptionPane.CLOSED_OPTION) {
             		view.FenetreJeu.displayMenu();
             	}

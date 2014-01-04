@@ -1,18 +1,12 @@
 package model;
 
-import java.util.Vector;
 
 public class Carte {
 
 	private CaseDale[][] plateau;
 	private String[][] decor;
 	
-	public void Carte() {
-		plateau = null;
-		decor = null;
-	}
-	
-	public void initCarte(String[][][] carte) {
+	public Carte(String[][][] carte) {
 		
 		this.plateau = new CaseDale[carte[0].length][carte[1].length];
 		this.decor = new String[carte[0].length][carte[1].length];
@@ -26,8 +20,8 @@ public class Carte {
 				String individu = carte[i][j][1];
 				String objet = carte[i][j][2];
 				
-				this.plateau[i][j].setIndividu(individu);
-				this.plateau[i][j].setObjet(objet);				
+				this.plateau[i][j].initIndividu(individu);
+				this.plateau[i][j].initObjet(objet);				
 				if(decor.equals("stone")) {
 					this.plateau[i][j].setAccessible(false);
 				}
@@ -38,6 +32,10 @@ public class Carte {
 				this.decor[i][j] = decor;
 			}
 		}
+	}
+	
+	public void startLife() {
+		ThreadUtil.execute(new VieAble(this));
 	}
 	
 	public CaseDale[][] getPlateau() {

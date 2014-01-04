@@ -1,10 +1,10 @@
 package model;
 
-public class Comportement {
-
-	private void perception(){}
+public interface Comportement {
+	
+	void perception();
     
-    private void decidion(){}
+    void decision();
     
-    private void action(){}
+    Action action(String direction, Individu attaque, Objet mange);
 }

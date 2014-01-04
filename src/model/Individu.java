@@ -1,34 +1,35 @@
 package model;
 
-public abstract class Individu {
-	
-    protected int vie;
-    protected int attaque;
-    
-    // A FAIRE
-    public Action live(){
-            
-            Action val = new Action();
-            
-            return val;
-    }
-    
-    
-    public int getVie(){
-            return this.vie;
-    }
-    
-    public int getAttaque(){
-            return this.attaque;
-    }
-    
-    public void ajouteVie(int soin){
-            this.vie += soin;            
-    }
-    
-    public void retireVie(int dommage){
-            this.vie = this.vie - dommage;
-    }
-    
+public abstract class Individu implements Comportement{
+
+	protected int vie;
+	protected int attaque;
+
+	public Action live(){
+
+		System.out.println("Je suis un : "+this.toString());
+		
+		perception();
+		decision();
+		return action(null, null, null);
+	}
+
+
+	public int getVie(){
+		return this.vie;
+	}
+
+	public int getAttaque(){
+		return this.attaque;
+	}
+
+	public void ajouteVie(int soin){
+		this.vie += soin;            
+	}
+
+	public void retireVie(int dommage){
+		this.vie = this.vie - dommage;
+	}
+
 	public abstract String toString();
 }

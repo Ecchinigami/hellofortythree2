@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Vector;
 
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,10 +19,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controller.BtnListener;
-
 import model.BuilderXML;
 import model.Carte;
+import controller.BtnListener;
 
 public class MapMenu extends JPanel implements ListSelectionListener {
 	
@@ -33,7 +31,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 
 	private String defaultXMLPath = "./res/xml/";
 	
-	private Carte carte;
+	private Carte carte = null;
 
 	public MapMenu() {
 		
@@ -114,8 +112,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 	public void valueChanged(ListSelectionEvent lse) {
 		if (!lse.getValueIsAdjusting()) {  			
 			BuilderXML b = new BuilderXML();
-			carte = new Carte();
-			carte.initCarte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));	
+			carte = new Carte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));
 			
 			preview.add(new Plateau(carte));
 			clPreview.next(preview);
@@ -125,7 +122,9 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 	public class JouerBtnListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent arg0) {
-			FenetreJeu.displayGame(carte);
+			if(carte!=null)
+				FenetreJeu.displayGame(carte);
+				carte.startLife();
 		}
 	}
 }

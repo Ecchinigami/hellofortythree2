@@ -15,4 +15,12 @@ public class Renard extends Individu {
 	public String toString() {
 		return "renard";
 	}
+	
+	public void perception() {
+	}
+	public void decision() {
+	}
+	public Action action(String direction, Individu attaque, Objet mange) {
+		return new Action(direction, attaque, mange);
+	}
 }
