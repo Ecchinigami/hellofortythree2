@@ -19,7 +19,9 @@ public abstract class Individu extends Comportement{
     	// Varibale servant à faire tourner sur lui même l'individu jusqu'à trouver une case libre devant lui
     	int tentative = 0;
     	// On regarde ce qui se trouve autour de l'individu courrant
-		String[][] aire = this.perception(tab, posx, posy);
+    	System.out.println("bla :"+posx+" ,,, "+posy);
+		String[][] aire;
+		aire = this.perception(tab, posx, posy);
 		// L'individu décide du mouvement à effectuer
 		mouvement = tab[posx][posy].getIndividu().decision(aire, tab[posx][posy].getIndividu().toString());
 		// Cas particulier, si l'individu décide de chercher de la nourriture (Pas d'individu aux alentours)
@@ -144,7 +146,6 @@ public abstract class Individu extends Comportement{
     
     private static String chercheNourriture(CaseDale[][] c, int posx, int posy, int taille){
     	
-    	String[][] aire = new String[taille][taille];
     	String direction = "";
     	int i, j, xNourriture, yNourriture;
     	xNourriture = -1000;
@@ -152,7 +153,7 @@ public abstract class Individu extends Comportement{
     	int distanceA;
     	for(i = 0 ; i < taille ; i++){
     		for(j = 0; j < taille ; j++){
-    			if(c[i][j].getObjet().toString() != "vide"){
+    			if(c[i][j].getObjet() != null){
     				distanceA = (posx-xNourriture)+(posy-yNourriture);
     		    	if (distanceA < 0){
     		    		distanceA = -distanceA;
@@ -187,15 +188,60 @@ public abstract class Individu extends Comportement{
     	
     	String[][] aire = new String[3][3];
     	aire[1][1] = "vide";
-    	aire[0][0] = c[x-1][y-1].getIndividu().toString();
-    	aire[0][1] = c[x][y-1].getIndividu().toString();
-    	aire[0][2] = c[x+1][y-1].getIndividu().toString();
-    	aire[1][0] = c[x-1][y].getIndividu().toString();
-    	aire[1][2] = c[x+1][y].getIndividu().toString();
-    	aire[2][0] = c[x-1][y+1].getIndividu().toString();
-    	aire[2][1] = c[x][y+1].getIndividu().toString();
-    	aire[2][2] = c[x+1][y+1].getIndividu().toString();
+    	System.out.println("blabla :"+x+" ,,, "+y);
     	
+    	// 1
+    	if(y != 0 && x != (c.length - 1)){
+    		aire[0][2] = c[y-1][x+1].getIndividu().toString();
+		}
+		else{
+			aire[0][2] = "vide";
+		}
+    	// 2
+    	if(y == 0){
+    		aire[1][0] = "vide";
+    		
+    	}else{
+    		aire[1][0] = c[y-1][x].getIndividu().toString();
+    	}
+    	// 3
+    	if(x == 0){
+    		aire[0][1] = "vide";
+    	}else{
+    		aire[0][1] = c[y][x-1].getIndividu().toString();
+    	}
+    	// 4
+    	if(y == 0 && x == 0){
+    		aire[0][0] = "vide";
+    	}else if(y != 0 && x != 0){
+    		aire[0][0] = c[y-1][x-1].getIndividu().toString();
+    	}
+    	// 5
+    	if(y != (c.length - 1) && x != 0){
+			aire[2][0] = c[y+1][x-1].getIndividu().toString();
+		}
+		else{
+			aire[2][0] = "vide";
+		}
+    	// 6
+    	if(x != (c.length - 1)){
+    		aire[1][2] = c[y][x+1].getIndividu().toString();
+    	}else{
+    		aire[1][2] = "vide";
+    	}
+    	// 7
+    	if(y != (c.length - 1)){
+    		aire[2][1] = c[y+1][x].getIndividu().toString();
+    	}else{
+    		aire[2][1] = "vide";
+    	}
+    	// 8
+    	if(x != (c.length - 1) && y != (c.length - 1)){
+    		aire[2][2] = c[y+1][x+1].getIndividu().toString();
+    	}else{
+    		aire[2][2] = "vide";
+    	}
+    	    	
     	return aire;
     }
    

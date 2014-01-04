@@ -29,6 +29,8 @@ public class CaseDale {
         switch (type) {
             case "pomme":        objet = new Nourriture(type);
                     break;
+            case "piege" :		 objet = new Piege(type);
+            		break;
             default: objet=null;
                     break;
         }
