@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * <b>Action est la classe qui présente l'action effectuée par un individu via une liste</b>
  * @see VieAble#actionlist

@@ -10,7 +10,6 @@ package model;
  * </ul>
  * </p>
  * <p>L'objet est caractérisé par son nom.</p>
- * 
  *
  */
 public abstract class Objet {

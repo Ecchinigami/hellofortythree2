@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * <b>CaseDale est la classe représentant les cases de la Carte</b>
  */

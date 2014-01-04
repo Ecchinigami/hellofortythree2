@@ -7,8 +7,7 @@ package model;
  * <ul>
  * <li>Un nom</li>
  * <li>Une certaine force d'attaque</p>
- * </ul>
- * </p>
+ * </ul></p>
  */
 public abstract class Individu implements Comportement{
 

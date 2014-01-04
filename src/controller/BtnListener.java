@@ -15,7 +15,6 @@ import model.Carte;
 
 import view.FenetreJeu;
 
-
 /**
  * <b>Cette classe contient les différentes actions des boutons</b> 
  */

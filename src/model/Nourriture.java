@@ -1,4 +1,5 @@
 package model;
+
 /**
  * <b>La classe Nourriture est héritée de la Classe Objet</b>
  * <p>La nourriture est donc un objet que l'on pourra placer sur la carte du vivarium</p>

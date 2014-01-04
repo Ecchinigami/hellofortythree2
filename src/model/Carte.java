@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * <b>Carte est la classe représentant la Carte du vivarium.</b>
  * <p>La carte est l'élément clé du vivarium car elle contient les objets et individus présents, et la vie de ceux-ci.

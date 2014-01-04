@@ -2,6 +2,7 @@ package model;
 
 import java.util.Vector;
 
+
 /**
  * <b>VieAble est en fait la classe permettant de faire vivre le vivarium</b>
  * 

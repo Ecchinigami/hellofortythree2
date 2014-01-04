@@ -7,7 +7,8 @@ package model;
  * <li>La perception de l'individu</li>
  * <li>Sa décision par rapport à ce qu'il a perçu</li>
  * <li>et enfin, l'action que l'individu effectuera</li>
- * </ul></p>
+ * </ul>
+ * </p>
  */
 public interface Comportement {
 	

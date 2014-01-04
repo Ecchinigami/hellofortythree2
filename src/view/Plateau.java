@@ -33,6 +33,7 @@ import model.Poule;
 import model.Renard;
 import model.Vipere;
 
+
 /**
  * <b>Plateau est la classe représentant le plateau de jeu du vivarium</b>
  */
