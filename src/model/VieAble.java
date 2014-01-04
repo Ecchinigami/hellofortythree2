@@ -2,15 +2,26 @@ package model;
 
 import java.util.Vector;
 
-public class VieAble {
-	
+public class VieAble implements Runnable {
+
 	public Action actionlist[];
-	
-	public void upDate(){
-        
-    }
-    public void perform(){
-            
-    }
+
+	public VieAble() {
+
+	}
+
+	public void run() {
+		synchronized (ThreadUtil.class) {
+			update();
+			perform();
+		}
+	}
+
+	public void update(){
+
+	}
+	public void perform(){
+
+	}
 
 }
