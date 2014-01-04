@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Vector;
 
@@ -25,13 +28,16 @@ import model.Carte;
 public class MapMenu extends JPanel implements ListSelectionListener {
 	
 	private CardLayout clPreview;	
-	private JPanel preview;
-	
+	private JPanel preview;	
 	private JList list;
 
 	private String defaultXMLPath = "./res/xml/";
+	
+	private Carte carte;
 
 	public MapMenu() {
+		
+		this.setBackground(Color.LIGHT_GRAY);
 
 		// Initialisation du Grid Bag Layout et de ses Contraintes		 
 		this.setLayout(new GridBagLayout());
@@ -97,7 +103,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		option.add(retour);		
 		
 		Bouton jouer = new Bouton("Jouer");
-		jouer.addActionListener(new BtnListener("jouer"));
+		jouer.addActionListener(new JouerBtnListener());
 		option.add(jouer);
 		
 		option.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
@@ -108,11 +114,18 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 	public void valueChanged(ListSelectionEvent lse) {
 		if (!lse.getValueIsAdjusting()) {  			
 			BuilderXML b = new BuilderXML();
-			Carte c = new Carte();
-			c.initCarte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));		
+			carte = new Carte();
+			carte.initCarte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));	
 			
-			preview.add(new Plateau(c));
+			preview.add(new Plateau(carte));
 			clPreview.next(preview);
+		}
+	}
+	
+	public class JouerBtnListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent arg0) {
+			FenetreJeu.displayGame(carte);
 		}
 	}
 }
