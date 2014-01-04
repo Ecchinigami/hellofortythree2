@@ -2,6 +2,10 @@ package model;
 
 import java.util.Vector;
 
+/**
+ * <b>VieAble est en fait la classe permettant de faire vivre le vivarium</b>
+ * 
+ */
 public class VieAble implements Runnable {
 
 	public Action actionlist;
@@ -20,6 +24,9 @@ public class VieAble implements Runnable {
 		}
 	}
 
+	/**
+	 * Fait la mise à jour des divers éléments sur la carte suivant les actions effectuées
+	 */
 	public void update(){
 		System.out.println("Update");
 		for (int i = 0; i < carte.getPlateau()[0].length; i++) {
@@ -36,6 +43,9 @@ public class VieAble implements Runnable {
 			}
 		}
 	}
+	/**
+	 * Gère les conflits qu'il y aurait pu avoir lors des déplacements
+	 */
 	public void perform(){
 		System.out.println("Perform");
 	}

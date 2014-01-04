@@ -5,19 +5,29 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import javax.swing.JButton;
 
-/*
- * Cette classe personnalise l'aspect des boutons
+/**
+ * <b>Cette classe personnalise l'aspect des boutons</b>
  */
 public class Bouton extends JButton{
 
+	/**
+	 * Le nom du bouton
+	 */
 	private String name;
 
+	/**
+	 * Constructeur du bouton
+	 * @param str Le nom associé au bouton
+	 */
 	public Bouton(String str){
 		super(str);
 
 		this.name = str;  
 	}
-
+	
+	/**
+	 * Permet de personnaliser le bouton
+	 */
 	@Override
 	public void paintComponent(Graphics g){
 
