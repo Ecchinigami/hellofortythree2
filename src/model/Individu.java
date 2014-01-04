@@ -12,7 +12,7 @@ public abstract class Individu extends Comportement{
     // A FAIRE
     public Action live(int posx, int posy){
     	
-    	Action val = new Action();
+    	Action actionIndividu = new Action();
     	String mouvement = "";
     	CaseDale tab[][] = BtnCarte.map.getPlateau();
     	int taille = tab.length;
@@ -49,38 +49,40 @@ public abstract class Individu extends Comportement{
 	        tentative++;
         }
         if (tentative == 4){
-        	val.direction = "aucune";
-        	val.attaque = null;
-        	val.mange = null;
+        	actionIndividu.direction = "aucune";
+        	actionIndividu.attaque = null;
+        	actionIndividu.mange = null;
         	if (tab[posx][posy].getObjet().toString() != "pomme"){
-        		val.mange = tab[posx][posy].getObjet();
+        		actionIndividu.mange = tab[posx][posy].getObjet();
         		this.ajouteVie(3);
         		System.out.println("Youhou ! L'individu : "+tab[posx][posy].getIndividu().toString()+" a mangé "+tab[posx][posy].getObjet().toString()+" ! Miamm !");
         	}
         	if (tab[posx][posy].getObjet().toString() != "posion"){
-        		val.mange = tab[posx][posy].getObjet();
+        		actionIndividu.mange = tab[posx][posy].getObjet();
         		this.retireVie(3);
         		System.out.println("Mince ! L'individu : "+tab[posx][posy].getIndividu().toString()+" a mangé "+tab[posx][posy].getObjet().toString()+" ! Blurp !");
         	}
         }else{
         	if (this.CaseLibre(tab, mouvement, posx, posy) == false){
         		Individu victime = getVictime(tab, mouvement, posx, posy);
-        		val.direction = "";
-        		val.attaque = this.getVictime(tab, mouvement, posx, posy);
+        		actionIndividu.direction = "";
+        		actionIndividu.attaque = this.getVictime(tab, mouvement, posx, posy);
         		System.out.println("Et un combat commence entre "+tab[posx][posy].getIndividu().toString()+" et "+this.getVictime(tab, mouvement, posx, posy).toString()+" !");
-        		val.mange = null;
+        		actionIndividu.mange = null;
         		this.getVictime(tab, mouvement, posx, posy).retireVie(this.getAttaque());
         		if (this.getVictime(tab, mouvement, posx, posy).getVie() <= 0){
         			System.out.println(" Et Paf, son opposant est mort !");
         		}
         	}
-        	val.direction = mouvement;
-        	val.attaque = null;
-        	val.mange = null;
+        	actionIndividu.direction = mouvement;
+        	actionIndividu.attaque = null;
+        	actionIndividu.mange = null;
         	
         }
+        actionIndividu.posx = posx;
+        actionIndividu.posy = posy;
         
-        return val;
+        return actionIndividu;
     }
     
     private Individu getVictime(CaseDale[][] tab, String  mouvement, int posx, int posy){
@@ -181,7 +183,7 @@ public abstract class Individu extends Comportement{
     	return direction;
     }
     
-    String[][] perception(CaseDale[][] c, int x, int y){
+    public String[][] perception(CaseDale[][] c, int x, int y){
     	
     	String[][] aire = new String[3][3];
     	aire[1][1] = "vide";
@@ -197,7 +199,7 @@ public abstract class Individu extends Comportement{
     	return aire;
     }
    
-	String decision(String[][] aire, String individu){
+	public String decision(String[][] aire, String individu){
 		int i,j, predateur, proie;
 		int posxProie, posyProie, posxPre, posyPre;
 		String ordre, mouvement;

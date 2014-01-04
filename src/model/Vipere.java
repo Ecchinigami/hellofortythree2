@@ -15,4 +15,3 @@ public class Vipere extends Individu {
 	    return "vipere";
 	}
 }
-

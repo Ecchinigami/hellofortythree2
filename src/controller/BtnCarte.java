@@ -71,7 +71,7 @@ import view.ChoixCarte;
 	    	   //carte.displayParcourir();
 	    	   
 	    	   VieAble thread = new VieAble();
-	    	   thread.start();	    	   
+	    	   thread.start();    	   
 	       }
 	    }
 }
