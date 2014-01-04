@@ -2,14 +2,24 @@ package model;
 
 import java.util.Vector;
 
+/**
+ * <b>Carte est la classe représentant la Carte du vivarium.</b>
+ * <p>La carte est l'élément clé du vivarium car elle contient les objets et individus présents, et la vie de ceux-ci.
+ * 
+ */
 public class Carte {
 
+	
 	public CaseDale[][] plateau;
 	
 	public void Carte() {
 		plateau = null;
 	}
 	
+	/**
+	 * initialise la carte en plaçant les différents objets et individus sur les différentes cases de la carte.
+	 * @param carte La carte du Vivarium
+	 */
 	public void initCarte(String[][][] carte) {
 		
 		plateau = new CaseDale[carte[0].length][carte[1].length];

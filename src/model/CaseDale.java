@@ -1,12 +1,29 @@
 package model;
 
+/**
+ * <b>CaseDale est la classe représentant les cases de la Carte</b>
+ */
 public abstract class CaseDale {
 
+	/**
+	 * Accessible est un booléen qui permet de savoir si la case est ou non occupée 
+	 */
     private boolean accessible;
     
+    /**
+     * L'objet (Poison, nourriture, piège, obstacle)
+     */
     private Objet objet;
+    
+    /**
+     * L'individu (Poule, renard, vipère)
+     */
     private Individu individu;
     
+    /**
+     * Rend la case accessible en enlevant les objet et individu éventuellement présents sur la case
+     * @param accessible La case est accessible
+     */
     public CaseDale(boolean accessible) {
     	this.setAccessible(accessible);
     	
@@ -14,10 +31,18 @@ public abstract class CaseDale {
     	this.individu = null;
     }
 
+    /**
+     * Rend la case accessible
+     * @param accessible Renvoie que la case est accessible
+     */
 	public void setAccessible(boolean accessible) {
 		this.accessible = accessible;
 	}
 
+	/**
+	 * Permet de placer un objet sur une case
+	 * @param type Le type de l'objet à placer
+	 */
 	public void setObjet(String type) {
     	switch (type) {
 	        case "nourriture":	objet = new Nourriture(type);
@@ -27,7 +52,11 @@ public abstract class CaseDale {
     	}
     }
     
-    public void setIndividu(String type) {
+    /**
+     * Permet de placer un individu sur une case
+     * @param type Le type de l'individu à placer
+     */
+	public void setIndividu(String type) {
     	switch (type) {
 	        case "poule":	individu = new Poule();
 	        	break;
@@ -40,14 +69,26 @@ public abstract class CaseDale {
 		}
     }
     
+    /**
+     * Vérifie si la case est ou non accessible
+     * @return L'état de la case
+     */
     public boolean getAccessible() {
 		return accessible;
 	}
     
+    /**
+     * Cherche à savoir quel objet est présent
+     * @return L'objet présent sur la case de la carte
+     */
     public Objet getObjet() {
 		return objet;    	
     }
     
+    /**
+     * Cherche à savoir quel individu est présent
+     * @return L'individu présent sur la case de la carte.
+     */
     public Individu getIndividu() {
 		return individu;    	
     }

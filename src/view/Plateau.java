@@ -17,12 +17,21 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+/**
+ * <b>Plateau est la classe représentant le plateau de jeu du vivarium</b>
+ */
 public class Plateau extends JPanel {
 
+	/**
+	 * Personnalisation Arrière-plan du plateau
+	 */
 	public Plateau() {		
 		setBackground(Color.DARK_GRAY);
 	}
 
+	/**
+	 * Définition des textures présentes sur le plateau
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 

@@ -29,12 +29,26 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import controller.BtnListener;
-
+/**
+ * <b>FenetreJeu est la classe héritée de la classe JFrame</b> 
+ * 
+ */
 public class FenetreJeu extends JFrame {
 	
+	/**
+	 * Contient les objets graphiques
+	 */
 	Container pane;
+	
+	/**
+	 * Gestionnaire de placement des composants graphiques
+	 */
 	CardLayout cl;
 	
+	
+	/**
+	 * Permet de configurer la fenêtre de jeu
+	 */
 	public FenetreJeu() {
 		
 		super();	
@@ -54,6 +68,9 @@ public class FenetreJeu extends JFrame {
 		setVisible(true); // affiche la fenÃªtre
 	}
 	
+	/**
+	 * Initialise la fenêtre de jeu en récupérant le panel principal
+	 */
 	private void init() {
 		pane = getContentPane(); // rÃ©cupÃ¨re le panel principal
 		
@@ -68,20 +85,31 @@ public class FenetreJeu extends JFrame {
 		//this.setJMenuBar(createMenuBar());
 	}
 	
+	/**
+	 * Pour afficher le menu
+	 */
 	public void displayMenu() {
 		cl.show(pane, "Menu");
 	}
+	
+	/**
+	 * Pour afficher le jeu
+	 */
 	public void displayGame() {
 		cl.show(pane, "Game");
 	}
 	
+	/**
+	 * Pour initialiser le menu
+	 * @return Le menu mis en forme
+	 */
 	private JPanel initMenu() {
 		
 		JPanel menu = new JPanel();
         
         menu.setBackground(Color.LIGHT_GRAY);
         
-        // CrÃ©ation d'un gridbaglayout pour le menu
+        // Création d'un gridbaglayout pour le menu
         menu.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();        
         c.fill = GridBagConstraints.BOTH; 
@@ -117,6 +145,10 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
+	/**
+	 * Initialise la fenêtre de jeu
+	 * @return La fenêtre du jeu
+	 */
 	public JPanel initGame() {
 		
 		JPanel game = new JPanel();
@@ -148,6 +180,10 @@ public class FenetreJeu extends JFrame {
 		return game;
 	}
 	
+	/**
+	 * Pour afficher la Barre des menus en haut
+	 * @return La JMenubar
+	 */
 	private JMenuBar createMenuBar() {
         
         JMenuBar menuBar = new JMenuBar();

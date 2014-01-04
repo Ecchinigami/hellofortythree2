@@ -8,21 +8,36 @@ import javax.swing.JOptionPane;
 import view.FenetreJeu;
 
 
-/*
- * Cette classe contient les diffÃ©rentes actions des boutons 
+/**
+ * <b>Cette classe contient les différentes actions des boutons</b> 
  */
 public class BtnListener implements ActionListener {
 
+	/**
+	 * Les différents liens présents dans la fenêtre du vivarium
+	 */
     private String lien; 
+    
+    /**
+     * Fenêtre du jeu
+     */
     private FenetreJeu fenetre;
 
+    /**
+     * Méthode permettant de savoir quel lien a été cliqué et sur quelle fenêtre du jeu
+     * @param lien Le lien cliqué
+     * @param fenetre La fenêtre sur lequel se trouve le lien
+     */
     public BtnListener(String lien, FenetreJeu fenetre) {
         this.lien=lien;
         this.fenetre=fenetre;
     }
 
+    /**
+     * Méthode exécutée à chaque fois que l'on cliquera sur un lien
+     */
     @Override
-    public void actionPerformed(ActionEvent e) {    // cette mÃ©thode sera executÃ©e chaque fois que l'on actionne un bouton
+    public void actionPerformed(ActionEvent e) {    // cette méthode sera executée chaque fois que l'on actionne un bouton
 
        if(lien.equals("acceuil")) {
            
