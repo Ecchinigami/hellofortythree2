@@ -25,11 +25,26 @@ import javax.swing.KeyStroke;
 import model.Carte;
 import controller.BtnListener;
 
+
+/**
+ * <b>FenetreJeu est la classe héritée de la classe JFrame</b> 
+ * 
+ */
 public class FenetreJeu extends JFrame {
 	
+	/**
+	 * Contient les objets graphiques
+	 */
 	private static Container pane;
+	
+	/**
+	 * Gestionnaire de placement des composants graphiques
+	 */
 	private static CardLayout cl;
 	
+	/**
+	 * Permet de configurer la fenêtre de jeu
+	 */
 	public FenetreJeu() {
 		
 		super();	
@@ -49,6 +64,9 @@ public class FenetreJeu extends JFrame {
 		setVisible(true); // affiche la fenÃªtre
 	}
 	
+	/**
+	 * Initialise la fenêtre de jeu en récupérant le panel principal
+	 */
 	private void init() {
 		pane = getContentPane(); // rÃ©cupÃ¨re le panel principal
 		
@@ -61,18 +79,33 @@ public class FenetreJeu extends JFrame {
 		//this.setJMenuBar(createMenuBar());
 	}
 	
+	/**
+	 * Pour afficher le menu
+	 */
 	public static void displayMenu() {
 		cl.show(pane, "Menu");
 	}
+	
+	/**
+	 * Pour afficher le jeu
+	 */
 	public static void displayGame(Carte c) {
 		pane.add(initGame(c), "Game");
 		cl.show(pane, "Game");
 	}
+	
+	/**
+	 * Pour afficher le menu lors du jeu
+	 */
 	public static void displayMapMenu() {
 		pane.add(initMapMenu(), "MapMenu");
 		cl.show(pane, "MapMenu");
 	}
 
+	/**
+	 * Pour initialiser le menu
+	 * @return Le menu mis en forme
+	 */
 	private JPanel initMenu() {
 		
 		JPanel menu = new JPanel();
@@ -115,6 +148,10 @@ public class FenetreJeu extends JFrame {
         return menu;
 	}
 	
+	/**
+	 * Initialise la fenêtre de jeu
+	 * @return La fenêtre du jeu
+	 */
 	private static JPanel initGame(Carte c) {
 		
 		JPanel game = new JPanel();
@@ -128,11 +165,19 @@ public class FenetreJeu extends JFrame {
 		return game;
 	}
 	
+	/**
+	 * Pour afficher le menu lors du jeu
+	 * @return Le Menu présent lors du jeu
+	 */
 	private static JPanel initMapMenu() {
 		MapMenu mapMenu = new MapMenu();   
 		return mapMenu;
 	}
 	
+	/**
+	 * Pour afficher la Barre des menus en haut
+	 * @return La JMenubar
+	 */
 	private JMenuBar createMenuBar() {
         
         JMenuBar menuBar = new JMenuBar();

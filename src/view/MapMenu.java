@@ -23,6 +23,10 @@ import model.BuilderXML;
 import model.Carte;
 import controller.BtnListener;
 
+
+/**
+ * <b>Mapmenu est la classe représentant le menu lors du jeu</b>
+ */
 public class MapMenu extends JPanel implements ListSelectionListener {
 	
 	private CardLayout clPreview;	

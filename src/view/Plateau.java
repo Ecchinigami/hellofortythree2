@@ -33,6 +33,10 @@ import model.Poule;
 import model.Renard;
 import model.Vipere;
 
+
+/**
+ * <b>Plateau est la classe représentant le plateau de jeu du vivarium</b>
+ */
 public class Plateau extends JPanel implements MouseWheelListener, ComponentListener {
 	
 	private Carte carte;
@@ -81,6 +85,9 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		blackDownStand = new ImageIcon("./res/image/character/black/downStand.png").getImage();
 	}
 
+	/**
+	 * Définition des textures présentes sur le plateau
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 
