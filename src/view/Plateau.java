@@ -18,6 +18,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -74,30 +77,21 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		squareSize = 30;
 
 		// Chargement des images
+		try {
+			wood = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/wood.png"));
+			stone = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/stone.png"));
+			grass = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/grass.png"));
+			dirt = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/dirt.png"));
+			
+			pomme = ImageIO.read(this.getClass().getResourceAsStream("/res/image/item/apple.png"));
+			
+			whiteDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/white/downStand.png"));
+			redDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/red/downStand.png"));
+			blackDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/black/downStand.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		
-		wood = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/wood.png"));
-		stone = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/stone.png"));
-		grass = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/grass.png"));
-		dirt = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/dirt.png"));
-		
-		pomme = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/item/apple.png"));
-		
-		whiteDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/white/downStand.png"));
-		redDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/red/downStand.png"));
-		blackDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/black/downStand.png"));
-		
-		/*wood = new ImageIcon("./res/image/block/wood.png").getImage();
-		stone = new ImageIcon("./res/image/block/stone.png").getImage();
-		grass = new ImageIcon("./res/image/block/grass.png").getImage();
-		dirt = new ImageIcon("./res/image/block/dirt.png").getImage();
-
-		pomme = new ImageIcon("./res/image/item/apple.png").getImage();
-
-		whiteDownStand = new ImageIcon("./res/image/character/white/downStand.png").getImage();
-		redDownStand = new ImageIcon("./res/image/character/red/downStand.png").getImage();
-		blackDownStand = new ImageIcon("./res/image/character/black/downStand.png").getImage();
-		*/
 	}
 
 	/**
