@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -73,7 +74,20 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		squareSize = 30;
 
 		// Chargement des images
-		wood = new ImageIcon("./res/image/block/wood.png").getImage();
+		
+		
+		wood = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/wood.png"));
+		stone = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/stone.png"));
+		grass = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/grass.png"));
+		dirt = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/block/dirt.png"));
+		
+		pomme = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/item/apple.png"));
+		
+		whiteDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/white/downStand.png"));
+		redDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/red/downStand.png"));
+		blackDownStand = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/res/image/character/black/downStand.png"));
+		
+		/*wood = new ImageIcon("./res/image/block/wood.png").getImage();
 		stone = new ImageIcon("./res/image/block/stone.png").getImage();
 		grass = new ImageIcon("./res/image/block/grass.png").getImage();
 		dirt = new ImageIcon("./res/image/block/dirt.png").getImage();
@@ -83,6 +97,7 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		whiteDownStand = new ImageIcon("./res/image/character/white/downStand.png").getImage();
 		redDownStand = new ImageIcon("./res/image/character/red/downStand.png").getImage();
 		blackDownStand = new ImageIcon("./res/image/character/black/downStand.png").getImage();
+		*/
 	}
 
 	/**

@@ -1,3 +1,5 @@
+import java.io.InputStream;
+
 import model.BuilderXML;
 import model.Carte;
 import view.FenetreJeu;
@@ -18,6 +20,8 @@ public class Main {
 		FenetreJeu f = new FenetreJeu();
 //		BuilderXML b = new BuilderXML();
 //		
+		//InputStream is = BuilderXML.class.getResourceAsStream("/res/xml/");
+		
 //		Carte c = new Carte();
 //		c.initCarte(b.chargmentXML("./res/xml/exemple4x4.xml"));
 		

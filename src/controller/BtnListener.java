@@ -76,7 +76,7 @@ public class BtnListener implements ActionListener {
            
            if(chooser.getSelectedFile() != null){
         	   BuilderXML b = new BuilderXML();
-        	   Carte c = new Carte(b.chargmentXML(chooser.getSelectedFile().getPath()));
+        	   Carte c = new Carte(b.chargmentXML(BuilderXML.class.getResourceAsStream(chooser.getSelectedFile().getPath())));
         	   FenetreJeu.displayGame(c);
         	   c.startLife();
            }

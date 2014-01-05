@@ -33,7 +33,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 	private JPanel preview;	
 	private JList list;
 
-	private String defaultXMLPath = "./res/xml/";
+	private String defaultXMLPath = "/res/xml/";
 	
 	private Carte carte = null;
 
@@ -57,10 +57,16 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		c.gridy = 0;
 		File repertoire = new File(defaultXMLPath);
 		Vector listFile = new Vector();
-		for (File file : repertoire.listFiles()) {
+		/*for (File file : repertoire.listFiles()) {
 			if(file.getName().toLowerCase().endsWith(".xml"))
 				listFile.add(file.getName());
-		}
+		}*/
+		
+		listFile.add("exemple2.xml");
+		listFile.add("exemple4x4.xml");
+		listFile.add("Map4x4-2.xml");
+		listFile.add("Map4x4.xml");
+		
 		list = new JList(listFile);
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -116,7 +122,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 	public void valueChanged(ListSelectionEvent lse) {
 		if (!lse.getValueIsAdjusting()) {  			
 			BuilderXML b = new BuilderXML();
-			carte = new Carte(b.chargmentXML(defaultXMLPath + list.getSelectedValue()));
+			carte = new Carte(b.chargmentXML(BuilderXML.class.getResourceAsStream(defaultXMLPath + list.getSelectedValue())));
 			
 			preview.add(new Plateau(carte));
 			clPreview.next(preview);
