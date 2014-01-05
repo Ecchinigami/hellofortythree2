@@ -31,15 +31,16 @@ import model.Carte;
 import model.CaseDale;
 import model.Poule;
 import model.Renard;
+import model.ThreadUtil;
+import model.VieAble;
 import model.Vipere;
 
 
 /**
- * <b>Plateau est la classe représentant le plateau de jeu du vivarium</b>
+ * <b>Plateau est la classe reprï¿½sentant le plateau de jeu du vivarium</b>
  */
 public class Plateau extends JPanel implements MouseWheelListener, ComponentListener {
 	
-	private Carte carte;
 	private CaseDale[][] plateau;
 	private String[][] decor;
 	
@@ -59,7 +60,6 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 
 	public Plateau(Carte c) {
 		
-		this.carte = c;
 		this.plateau = c.getPlateau();
 		this.decor = c.getDecor();
 		
@@ -84,7 +84,7 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 	}
 
 	/**
-	 * Définition des textures présentes sur le plateau
+	 * Dï¿½finition des textures prï¿½sentes sur le plateau
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);

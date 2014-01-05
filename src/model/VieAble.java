@@ -32,7 +32,7 @@ public class VieAble implements Runnable {
 	}
 
 	/**
-	 * Fait la mise à jour des divers éléments sur la carte suivant les actions effectuées
+	 * Fait la mise ï¿½ jour des divers ï¿½lï¿½ments sur la carte suivant les actions effectuï¿½es
 	 */
 	public void update(){
 		System.out.println("Update");
@@ -48,7 +48,7 @@ public class VieAble implements Runnable {
 		}
 	}
 	/**
-	 * Gère les conflits qu'il y aurait pu avoir lors des déplacements
+	 * Gï¿½re les conflits qu'il y aurait pu avoir lors des dï¿½placements
 	 */
 	public void perform(){
 		System.out.println("Perform");
@@ -56,15 +56,18 @@ public class VieAble implements Runnable {
 		for (int i = 0; i < carte.getPlateau()[0].length; i++) {
 			for (int j = 0; j < carte.getPlateau()[1].length; j++) {
 				if(carte.getPlateau()[i][j].getIndividu() != null) {
-					switch (actionlist.get(individu).getDirection()) {
-						case "bas":	
-							if(i<carte.getPlateau()[0].length-1) {
-								if(carte.getPlateau()[i+1][j].getIndividu()==null) {
-									carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
-									carte.getPlateau()[i][j].setIndividu(null);
+					
+					if(individu < actionlist.size()) {
+						switch (actionlist.get(individu).getDirection()) {
+							case "bas":	
+								if(i<carte.getPlateau()[0].length-1) {
+									if(carte.getPlateau()[i+1][j].getIndividu()==null) {
+										carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
+										carte.getPlateau()[i][j].setIndividu(null);
+									}
 								}
-							}
-						break;
+							break;
+						}
 					}
 					
 					individu++;

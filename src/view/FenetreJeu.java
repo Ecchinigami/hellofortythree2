@@ -23,11 +23,12 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import model.Carte;
+import model.ThreadUtil;
 import controller.BtnListener;
 
 
 /**
- * <b>FenetreJeu est la classe héritée de la classe JFrame</b> 
+ * <b>FenetreJeu est la classe hï¿½ritï¿½e de la classe JFrame</b> 
  * 
  */
 public class FenetreJeu extends JFrame {
@@ -43,7 +44,7 @@ public class FenetreJeu extends JFrame {
 	private static CardLayout cl;
 	
 	/**
-	 * Permet de configurer la fenêtre de jeu
+	 * Permet de configurer la fenï¿½tre de jeu
 	 */
 	public FenetreJeu() {
 		
@@ -65,7 +66,7 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Initialise la fenêtre de jeu en récupérant le panel principal
+	 * Initialise la fenï¿½tre de jeu en rï¿½cupï¿½rant le panel principal
 	 */
 	private void init() {
 		pane = getContentPane(); // rÃ©cupÃ¨re le panel principal
@@ -149,8 +150,8 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Initialise la fenêtre de jeu
-	 * @return La fenêtre du jeu
+	 * Initialise la fenï¿½tre de jeu
+	 * @return La fenï¿½tre du jeu
 	 */
 	private static JPanel initGame(Carte c) {
 		
@@ -167,7 +168,7 @@ public class FenetreJeu extends JFrame {
 	
 	/**
 	 * Pour afficher le menu lors du jeu
-	 * @return Le Menu présent lors du jeu
+	 * @return Le Menu prï¿½sent lors du jeu
 	 */
 	private static JPanel initMapMenu() {
 		MapMenu mapMenu = new MapMenu();   
