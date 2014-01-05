@@ -2,17 +2,18 @@ package model;
 
 
 /**
- * <b>Carte est la classe représentant la Carte du vivarium.</b>
- * <p>La carte est l'élément clé du vivarium car elle contient les objets et individus présents, et la vie de ceux-ci.
+ * <b>Carte est la classe representant la Carte du vivarium.</b>
+ * <p>La carte est l'element cle du vivarium car elle contient les objets et individus presents, et la vie de ceux-ci.
  * 
  */
 public class Carte {
 
 	private CaseDale[][] plateau;
 	private String[][] decor;
+	private VieAble life;
 	
 	/**
-	 * initialise la carte en plaçant le décor et les différents objets et individus sur les différentes cases de la carte.
+	 * Initialise la carte en placant le decor et les differents objets et individus sur les differentes cases de la carte.
 	 * @param carte La carte du Vivarium
 	 */
 	public Carte(String[][][] carte) {
@@ -42,11 +43,19 @@ public class Carte {
 			}
 		}
 	}
+	
 	/**
-	 * Méthode permettant de démarrer la vie sur la carte (lancement du thread)
+	 * Methode permettant de demarrer la vie sur la carte (lancement du thread)
 	 */
 	public void startLife() {
-		ThreadUtil.execute(new VieAble(this));
+		life = new VieAble(this);
+		ThreadUtil.execute(life);
+	}
+	/**
+	 * Methode permettant de stopper la vie sur la carte (arret du thread)
+	 */
+	public void stopLife() {
+		life.stop();
 	}
 	
 	/**
@@ -58,8 +67,8 @@ public class Carte {
 	}
 	
 	/**
-	 * Permet de retourner le décor
-	 * @return Le décor
+	 * Permet de retourner le dï¿½cor
+	 * @return Le dï¿½cor
 	 */
 	public String[][] getDecor() {
 		return decor;

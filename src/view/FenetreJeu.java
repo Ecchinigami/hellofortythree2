@@ -51,10 +51,7 @@ public class FenetreJeu extends JFrame {
 		super();	
 		
 		setTitle("Hellofortythree !");
-
-		//initVars();               // appelle la méthode initVars pour initialiser les variables
-		//initComponents();         // appelle la méthode initComponents pour initialiser les composants
-
+		
 		setPreferredSize(new Dimension(500, 500)); // indique la taille de la fenêtre
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // l'application s'arrête quand la fenêtre est fermée
 

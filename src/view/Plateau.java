@@ -41,6 +41,7 @@ import model.Vipere;
  */
 public class Plateau extends JPanel implements MouseWheelListener, ComponentListener {
 	
+	private Carte carte;
 	private CaseDale[][] plateau;
 	private String[][] decor;
 	
@@ -60,6 +61,7 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 
 	public Plateau(Carte c) {
 		
+		this.carte = c;
 		this.plateau = c.getPlateau();
 		this.decor = c.getDecor();
 		
@@ -158,7 +160,8 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
             public void actionPerformed(ActionEvent e) {			
             	int option = JOptionPane.showConfirmDialog(null, "Voulez-vous quitter la partie ?", "Quitter partie", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             	if(option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION && option != JOptionPane.CLOSED_OPTION) {
-            		view.FenetreJeu.displayMenu();
+            		carte.stopLife();
+            		view.FenetreJeu.displayMenu();            		
             	}
             }
         });

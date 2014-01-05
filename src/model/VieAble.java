@@ -1,5 +1,6 @@
 package model;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.Vector;
 
 
@@ -11,15 +12,17 @@ public class VieAble implements Runnable {
 
 	public Vector<Action> actionlist;
 	public Carte carte;
+	private boolean running;
 
 	public VieAble(Carte c) {
 		carte = c;
 		actionlist = new Vector<Action>();
+		running = true;
 	}
 
 	public void run() {
 		synchronized (ThreadUtil.class) {
-			while(true) {
+			while(running) {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -31,8 +34,12 @@ public class VieAble implements Runnable {
 		}
 	}
 
+	public void stop() {
+		this.running = false;
+	}
+
 	/**
-	 * Fait la mise � jour des divers �l�ments sur la carte suivant les actions effectu�es
+	 * Fait la mise a jour des divers elements sur la carte suivant les actions effectuees
 	 */
 	public void update(){
 		System.out.println("Update");
