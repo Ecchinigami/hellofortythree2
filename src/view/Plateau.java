@@ -55,8 +55,6 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 
 	public Plateau(Carte c) {
 		
-		//SwingUtilities.invokeLater(new Runnable() { public void run() { repaint(); }});
-		
 		this.carte = c;
 		this.plateau = c.getPlateau();
 		this.decor = c.getDecor();

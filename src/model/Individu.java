@@ -7,11 +7,13 @@ public abstract class Individu implements Comportement{
 
 	public Action live(){
 
-		System.out.println("Je suis un : "+this.toString());
+		System.out.println("-> Je suis un : "+this.toString());
 		
-		perception();
-		decision();
-		return action(null, null, null);
+//		perception();
+//		decision();
+//		return action(null, null, null);
+		
+		return new Action("bas",null,null);
 	}
 
 

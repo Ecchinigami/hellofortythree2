@@ -10,4 +10,14 @@ public class Action {
 		this.attaque = attaque;
 		this.mange = mange;
 	}
+	
+	public String getDirection() {
+		return direction;
+	}
+	public Individu getAttaque() {
+		return attaque;
+	}
+	public Objet getMange() {
+		return mange;
+	}
 }
