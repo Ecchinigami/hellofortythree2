@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -23,7 +24,7 @@ public class BuilderXML {
 	public BuilderXML() {
 	}
 	
-	public String[][][] chargmentXML(String path) {
+	public String[][][] chargmentXML(InputStream is) {
 		
 		String tab[][][] = null;
 		
@@ -41,7 +42,7 @@ public class BuilderXML {
 		    /*
 		     * Etape 3 : Ouverture d'un Document
 		     */
-		    final Document document= builder.parse(new File(path));
+		    final Document document= builder.parse(is);
 		    
 		    /*
 		     * Etape 4 : récupération de l'Element racine

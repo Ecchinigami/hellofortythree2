@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -17,6 +18,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -73,16 +77,21 @@ public class Plateau extends JPanel implements MouseWheelListener, ComponentList
 		squareSize = 30;
 
 		// Chargement des images
-		wood = new ImageIcon("./res/image/block/wood.png").getImage();
-		stone = new ImageIcon("./res/image/block/stone.png").getImage();
-		grass = new ImageIcon("./res/image/block/grass.png").getImage();
-		dirt = new ImageIcon("./res/image/block/dirt.png").getImage();
-
-		pomme = new ImageIcon("./res/image/item/apple.png").getImage();
-
-		whiteDownStand = new ImageIcon("./res/image/character/white/downStand.png").getImage();
-		redDownStand = new ImageIcon("./res/image/character/red/downStand.png").getImage();
-		blackDownStand = new ImageIcon("./res/image/character/black/downStand.png").getImage();
+		try {
+			wood = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/wood.png"));
+			stone = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/stone.png"));
+			grass = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/grass.png"));
+			dirt = ImageIO.read(this.getClass().getResourceAsStream("/res/image/block/dirt.png"));
+			
+			pomme = ImageIO.read(this.getClass().getResourceAsStream("/res/image/item/apple.png"));
+			
+			whiteDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/white/downStand.png"));
+			redDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/red/downStand.png"));
+			blackDownStand = ImageIO.read(this.getClass().getResourceAsStream("/res/image/character/black/downStand.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
