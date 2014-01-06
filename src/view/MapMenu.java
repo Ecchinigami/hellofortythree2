@@ -66,6 +66,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		listFile.add("exemple4x4.xml");
 		listFile.add("Map4x4-2.xml");
 		listFile.add("Map4x4.xml");
+		listFile.add("Map8x8.xml");
 		
 		list = new JList(listFile);
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);

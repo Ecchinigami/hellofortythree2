@@ -39,7 +39,7 @@ public class VieAble implements Runnable {
 	}
 
 	/**
-	 * Fait la mise a jour des divers elements sur la carte suivant les actions effectuees
+	 * Fait la mise a jour des divers elements suivant les actions
 	 */
 	public void update(){
 		System.out.println("Update");
@@ -55,7 +55,7 @@ public class VieAble implements Runnable {
 		}
 	}
 	/**
-	 * G�re les conflits qu'il y aurait pu avoir lors des d�placements
+	 * Effectue les actions des individus
 	 */
 	public void perform(){
 		System.out.println("Perform");
