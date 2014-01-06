@@ -114,23 +114,27 @@ public class VieAble implements Runnable {
 								break;
 						}
 					}
-					
+				}
+				if(carte.getPlateau()[i][j].getIndividu() != null) {
 					// Attaque
 					if(actionlist.get(individu).getAttaque() != null){
 						actionlist.get(individu).getAttaque().retireVie(carte.getPlateau()[i][j].getIndividu().getAttaque());
 					}
+				}
+				if(carte.getPlateau()[i][j].getIndividu() != null) {
+					System.out.println(carte.getPlateau()[i][j].getIndividu().getAttaque());
 					
 					// Règlage de LA MORT					
-					System.out.println("Vie :"+carte.getPlateau()[i][j].getIndividu().getVie());
+					
 					if(carte.getPlateau()[i][j].getIndividu().getVie() <= 0){
 						carte.getPlateau()[i][j].setIndividu(null);
 					}
 					
-					individu++;
-					FenetreJeu.repaintGame();
 				}
-				
 			}
+			FenetreJeu.repaintGame();
+			individu++;
+			
 		}
 	}
 
