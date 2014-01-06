@@ -169,7 +169,7 @@ public class Vipere extends Individu {
 	/**
 	 * Gestion des décisions de la vipère
 	 */
-	public String[] decision(String[][] portee) {
+public String[] decision(String[][] portee) {
 		
 		String[] decision = new String[4];
 		int i, j, predateur, proie, posxPre, posyPre, posxProie, posyProie;
@@ -250,7 +250,7 @@ public class Vipere extends Individu {
 	}
 	
 	/**
-	 * Action que la vipère effectue
+	 * Action que la poule effectue
 	 */
 	public Action action(String[] direction, Carte c) {
 		String sens = "aucun";
@@ -296,8 +296,6 @@ public class Vipere extends Individu {
 	    			sens = "droite";
 	    			break;
 	    		}
-	        	
-	          
 	      }
 	      System.out.println("La, on a notre action : direction : " + sens);
 	      System.out.println("Victime :"+etranger);

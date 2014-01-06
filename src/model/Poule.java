@@ -298,8 +298,6 @@ public class Poule extends Individu {
 	    			sens = "droite";
 	    			break;
 	    		}
-	        	
-	          
 	      }
 	      System.out.println("La, on a notre action : direction : " + sens);
 	      System.out.println("Victime :"+etranger);

@@ -115,21 +115,24 @@ public class VieAble implements Runnable {
 						}
 					}
 				}
-				if(carte.getPlateau()[i][j].getIndividu() != null) {
-					// Attaque
-					if(actionlist.get(individu).getAttaque() != null){
-						actionlist.get(individu).getAttaque().retireVie(carte.getPlateau()[i][j].getIndividu().getAttaque());
-						System.out.println("getVie del'individu !"+actionlist.get(individu).getAttaque().getVie());
+				if(individu < actionlist.size()) {
+					if(carte.getPlateau()[i][j].getIndividu() != null) {
+						// Attaque
+						if(actionlist.get(individu).getAttaque() != null){
+							actionlist.get(individu).getAttaque().retireVie(carte.getPlateau()[i][j].getIndividu().getAttaque());
+							System.out.println("getVie del'individu : "+carte.getPlateau()[i][j].getIndividu().toString()+" vie : "+actionlist.get(individu).getAttaque().getVie());
+						}
 					}
-				}
-				if(carte.getPlateau()[i][j].getIndividu() != null) {
-					
-					// Règlage de LA MORT					
-					
-					if(carte.getPlateau()[i][j].getIndividu().getVie() <= 0){
-						carte.getPlateau()[i][j].setIndividu(null);
+					if(carte.getPlateau()[i][j].getIndividu() != null) {
+						
+						// Règlage de LA MORT					
+						
+						if(carte.getPlateau()[i][j].getIndividu().getVie() <= 0){
+							carte.getPlateau()[i][j].setIndividu(null);
+							//actionlist.remove(individu);
+						}
+						
 					}
-					
 				}
 			}
 			FenetreJeu.repaintGame();
