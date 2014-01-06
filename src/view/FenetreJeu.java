@@ -44,6 +44,11 @@ public class FenetreJeu extends JFrame {
 	private static CardLayout cl;
 	
 	/**
+	 * Plateau de jeu
+	 */
+	private static Plateau plateau;
+	
+	/**
 	 * Permet de configurer la fen�tre de jeu
 	 */
 	public FenetreJeu() {
@@ -156,11 +161,18 @@ public class FenetreJeu extends JFrame {
 		
 		game.setLayout(new BorderLayout());
 		
-		Plateau p = new Plateau(c);
+		plateau = new Plateau(c);
 		
-		game.add(p);
+		game.add(plateau);
 		
 		return game;
+	}
+	
+	/**
+	 * Repeint le plateau
+	 */
+	public static void repaintGame() {
+		plateau.repaint();
 	}
 	
 	/**

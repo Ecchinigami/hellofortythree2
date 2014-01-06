@@ -1,7 +1,8 @@
 package model;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.Vector;
+
+import view.FenetreJeu;
 
 
 /**
@@ -24,12 +25,12 @@ public class VieAble implements Runnable {
 		synchronized (ThreadUtil.class) {
 			while(running) {
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1000);
+					update();
+					perform();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				update();
-				perform();
 			}
 		}
 	}
@@ -43,6 +44,8 @@ public class VieAble implements Runnable {
 	 */
 	public void update(){
 		System.out.println("Update");
+		
+		actionlist.clear(); // Vide la liste d'action
 
 		for (int i = 0; i < carte.getPlateau()[0].length; i++) {
 			for (int j = 0; j < carte.getPlateau()[1].length; j++) {
@@ -55,7 +58,7 @@ public class VieAble implements Runnable {
 		}
 	}
 	/**
-	 * G�re les conflits qu'il y aurait pu avoir lors des d�placements
+	 * Gere les conflits qu'il y aurait pu avoir lors des deplacements
 	 */
 	public void perform(){
 		System.out.println("Perform");
@@ -71,6 +74,8 @@ public class VieAble implements Runnable {
 									if(carte.getPlateau()[i+1][j].getIndividu()==null) {
 										carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
 										carte.getPlateau()[i][j].setIndividu(null);
+										
+										FenetreJeu.repaintGame();
 									}
 								}
 							break;
