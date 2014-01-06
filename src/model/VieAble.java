@@ -76,9 +76,7 @@ public class VieAble implements Runnable {
 									if(carte.getPlateau()[i+1][j].getIndividu()==null) {
 										if(carte.getPlateau()[i+1][j].getAccessible()) {
 											carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
-											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();										
+											carte.getPlateau()[i][j].setIndividu(null);								
 										}
 									}
 								}
@@ -89,8 +87,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i-1][j].getAccessible()) {
 											carte.getPlateau()[i-1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -101,8 +97,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i][j+1].getAccessible()) {
 											carte.getPlateau()[i][j+1].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -113,8 +107,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i][j-1].getAccessible()) {
 											carte.getPlateau()[i][j-1].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -123,6 +115,8 @@ public class VieAble implements Runnable {
 					}
 					
 					individu++;
+					
+					FenetreJeu.repaintGame();
 				}
 			}
 		}

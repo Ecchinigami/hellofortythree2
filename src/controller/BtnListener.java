@@ -3,8 +3,11 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -16,39 +19,39 @@ import model.Carte;
 import view.FenetreJeu;
 
 /**
- * <b>Cette classe contient les différentes actions des boutons</b> 
+ * <b>Cette classe contient les diffï¿½rentes actions des boutons</b> 
  */
 public class BtnListener implements ActionListener {
 
 	/**
-	 * Les différents liens présents dans la fenêtre du vivarium
+	 * Les diffï¿½rents liens prï¿½sents dans la fenï¿½tre du vivarium
 	 */
     private String lien; 
     
     /**
-     * Fenêtre du jeu
+     * Fenï¿½tre du jeu
      */
     private FenetreJeu fenetre;
 
 	/**
-	 * Méthode permettant de savoir quel lien a été cliqué
-	 * @param lien Le lien cliqué
+	 * Mï¿½thode permettant de savoir quel lien a ï¿½tï¿½ cliquï¿½
+	 * @param lien Le lien cliquï¿½
 	 */
     public BtnListener(String lien) {
         this.lien=lien;
     }
    
     /**
-     * Méthode permettant de savoir quel lien a été cliqué et sur quelle fenêtre du jeu
-     * @param lien Le lien cliqué
-     * @param fenetre La fenêtre sur lequel se trouve le lien
+     * Mï¿½thode permettant de savoir quel lien a ï¿½tï¿½ cliquï¿½ et sur quelle fenï¿½tre du jeu
+     * @param lien Le lien cliquï¿½
+     * @param fenetre La fenï¿½tre sur lequel se trouve le lien
      */
     public BtnListener(String lien, FenetreJeu fenetre) {
         this.lien=lien;
         this.fenetre=fenetre;
     }
     /**
-     * Méthode exécutée à chaque fois que l'on cliquera sur un lien
+     * Mï¿½thode exï¿½cutï¿½e ï¿½ chaque fois que l'on cliquera sur un lien
      */
     @Override
     public void actionPerformed(ActionEvent e) {    // cette mÃ©thode sera executÃ©e chaque fois que l'on actionne un bouton
@@ -69,17 +72,24 @@ public class BtnListener implements ActionListener {
     	   FenetreJeu.displayMapMenu();
        }
        else if(lien.equals("ouvrirFichier")) {
-           JFileChooser chooser = new JFileChooser();
-           FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
-           chooser.setFileFilter(filter);
-           chooser.showOpenDialog(null);
-           
-           if(chooser.getSelectedFile() != null){
-        	   BuilderXML b = new BuilderXML();
-        	   Carte c = new Carte(b.chargmentXML(BuilderXML.class.getResourceAsStream(chooser.getSelectedFile().getPath())));
-        	   FenetreJeu.displayGame(c);
-        	   c.startLife();
-           }
+    	   JFileChooser chooser = new JFileChooser();
+    	   FileNameExtensionFilter filter = new FileNameExtensionFilter("XML files", "xml");
+    	   chooser.setFileFilter(filter);
+    	   chooser.showOpenDialog(null);
+
+    	   if(chooser.getSelectedFile() != null){
+    		   BuilderXML b = new BuilderXML();
+
+    		   try {
+    			   Carte c;
+    			   InputStream s = new FileInputStream(chooser.getSelectedFile().getAbsolutePath());
+    			   c = new Carte(b.chargmentXML(s));
+    			   FenetreJeu.displayGame(c);
+    			   c.startLife();
+    		   } catch (FileNotFoundException e1) {
+    			   e1.printStackTrace();
+    		   }
+    	   }
        }
        else if(lien.equals("ajouterFichier")) {
            JFileChooser chooser = new JFileChooser();
