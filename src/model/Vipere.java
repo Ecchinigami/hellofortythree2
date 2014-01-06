@@ -13,7 +13,7 @@ public class Vipere extends Individu {
 	 * Constructeur par défaut de la vipère
 	 */
 	public Vipere() {
-        this.vie = 10;
+        this.vie = 5;
         this.attaque = 2;
 	}
 	
@@ -252,8 +252,10 @@ public class Vipere extends Individu {
 	/**
 	 * Action que la vipère effectue
 	 */
-	public Action action(String[] direction) {
+	public Action action(String[] direction, Carte c) {
 		String sens = "aucun";
+		Individu etranger = null;
+		CaseDale[][] plateau = c.getPlateau();
 	      switch(direction[0]){
 	        case "fuir":
 	          if(Integer.parseInt(direction[1]) > 0 ){
@@ -265,6 +267,7 @@ public class Vipere extends Individu {
 	          }else if (Integer.parseInt(direction[2]) < 0){
 	        	  sens = "haut";
 	          }
+	          etranger = plateau[Integer.parseInt(direction[1])][Integer.parseInt(direction[2])].getIndividu();
 	        case "traquer":
 	          if(Integer.parseInt(direction[1]) < 0 ){
 	        	  sens = "gauche";
@@ -275,6 +278,7 @@ public class Vipere extends Individu {
 	          }else if (Integer.parseInt(direction[2]) > 0){
 	        	  sens = "haut";
 	          }
+	          etranger = plateau[Integer.parseInt(direction[1])][Integer.parseInt(direction[2])].getIndividu();
 	        case "manger" :
 	        	Random r = new Random();
 	    		int rand = 1 + r.nextInt(4);
@@ -292,11 +296,11 @@ public class Vipere extends Individu {
 	    			sens = "droite";
 	    			break;
 	    		}
-	        	//String destination = "";
-	        	//destination = perception(Integer.parseInt(direction[1]),Integer.parseInt(direction[2]));
+	        	
 	          
 	      }
 	      System.out.println("La, on a notre action : direction : " + sens);
-	      return new Action(sens, null, null);
+	      System.out.println("Victime :"+etranger);
+	      return new Action(sens, etranger, null);
 	}
 }

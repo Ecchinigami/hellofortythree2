@@ -14,7 +14,7 @@ public class Poule extends Individu {
 	 * Constructeur par défaut de la poule
 	 */
 	public Poule() {
-        this.vie = 10;
+        this.vie = 5;
         this.attaque = 2;
 	}
 	
@@ -256,7 +256,7 @@ public class Poule extends Individu {
 	 */
 	public Action action(String[] direction, Carte c) {
 		String sens = "aucun";
-		Individu i;
+		Individu etranger = null;
 		CaseDale[][] plateau = c.getPlateau();
 	      switch(direction[0]){
 	        case "fuir":
@@ -269,7 +269,7 @@ public class Poule extends Individu {
 	          }else if (Integer.parseInt(direction[2]) < 0){
 	        	  sens = "haut";
 	          }
-	        //  i = plateau[Integer.parseInt(direction[1]][Integer.parseInt(direction[2]];
+	          etranger = plateau[Integer.parseInt(direction[1])][Integer.parseInt(direction[2])].getIndividu();
 	        case "traquer":
 	          if(Integer.parseInt(direction[1]) < 0 ){
 	        	  sens = "gauche";
@@ -280,6 +280,7 @@ public class Poule extends Individu {
 	          }else if (Integer.parseInt(direction[2]) > 0){
 	        	  sens = "haut";
 	          }
+	          etranger = plateau[Integer.parseInt(direction[1])][Integer.parseInt(direction[2])].getIndividu();
 	        case "manger" :
 	        	Random r = new Random();
 	    		int rand = 1 + r.nextInt(4);
@@ -301,6 +302,7 @@ public class Poule extends Individu {
 	          
 	      }
 	      System.out.println("La, on a notre action : direction : " + sens);
-	      return new Action(sens, null, null);
+	      System.out.println("Victime :"+etranger);
+	      return new Action(sens, etranger, null);
 	}
 }
