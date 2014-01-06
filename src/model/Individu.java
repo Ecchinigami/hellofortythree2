@@ -42,7 +42,7 @@ public abstract class Individu implements Comportement{
 		System.out.println("-> Je suis un : "+this.toString());
 		portee = perception(c, posx, posy);
 		ladecision = decision(portee);
-		Action laction = action(ladecision);
+		Action laction = action(ladecision, c);
 		
 		return laction;
 	}

@@ -25,5 +25,5 @@ public interface Comportement {
     /**
      * L'individu réalsie l'action dont il a décidé
      */
-    Action action(String[] direction);
+    Action action(String[] direction, Carte c);
 }

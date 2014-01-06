@@ -254,8 +254,10 @@ public class Poule extends Individu {
 	/**
 	 * Action que la poule effectue
 	 */
-	public Action action(String[] direction) {
+	public Action action(String[] direction, Carte c) {
 		String sens = "aucun";
+		Individu i;
+		CaseDale[][] plateau = c.getPlateau();
 	      switch(direction[0]){
 	        case "fuir":
 	          if(Integer.parseInt(direction[1]) > 0 ){
@@ -267,6 +269,7 @@ public class Poule extends Individu {
 	          }else if (Integer.parseInt(direction[2]) < 0){
 	        	  sens = "haut";
 	          }
+	        //  i = plateau[Integer.parseInt(direction[1]][Integer.parseInt(direction[2]];
 	        case "traquer":
 	          if(Integer.parseInt(direction[1]) < 0 ){
 	        	  sens = "gauche";
@@ -294,8 +297,7 @@ public class Poule extends Individu {
 	    			sens = "droite";
 	    			break;
 	    		}
-	        	//String destination = "";
-	        	//destination = perception(Integer.parseInt(direction[1]),Integer.parseInt(direction[2]));
+	        	
 	          
 	      }
 	      System.out.println("La, on a notre action : direction : " + sens);
