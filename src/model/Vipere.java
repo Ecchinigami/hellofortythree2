@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 /**
  * <b>La classe Vipere est héritée de la Classe "Individu"</b>
  * <p>Elle détaille ainsi les idividus "Vipere" dans le vivarium</p>
@@ -250,6 +252,50 @@ public class Vipere extends Individu {
 	 * Action que la vipère effectue
 	 */
 	public Action action(String[] direction) {
-		return new Action("", null, null);
+		String sens = "aucun";
+	      switch(direction[0]){
+	        case "fuir":
+	          if(Integer.parseInt(direction[1]) > 0 ){
+	        	  sens = "gauche";
+	          }else if (Integer.parseInt(direction[1]) < 0){
+	        	  sens = "droite";
+	          }else if (Integer.parseInt(direction[2]) > 0){
+	        	  sens = "bas";
+	          }else if (Integer.parseInt(direction[2]) < 0){
+	        	  sens = "haut";
+	          }
+	        case "traquer":
+	          if(Integer.parseInt(direction[1]) < 0 ){
+	        	  sens = "gauche";
+	          }else if (Integer.parseInt(direction[1]) > 0){
+	        	  sens = "droite";
+	          }else if (Integer.parseInt(direction[2]) < 0){
+	        	  sens = "bas";
+	          }else if (Integer.parseInt(direction[2]) > 0){
+	        	  sens = "haut";
+	          }
+	        case "manger" :
+	        	Random r = new Random();
+	    		int rand = 1 + r.nextInt(4);
+	    		switch (rand) {
+	    		case 1:
+	    			sens = "bas";
+	    			break;
+	    		case 2:
+	    			sens = "haut";
+	    			break;
+	    		case 3:
+	    			sens = "gauche";
+	    			break;
+	    		case 4:
+	    			sens = "droite";
+	    			break;
+	    		}
+	        	//String destination = "";
+	        	//destination = perception(Integer.parseInt(direction[1]),Integer.parseInt(direction[2]));
+	          
+	      }
+	      System.out.println("La, on a notre action : direction : " + sens);
+	      return new Action(sens, null, null);
 	}
 }

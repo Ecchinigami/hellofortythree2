@@ -25,7 +25,7 @@ import controller.BtnListener;
 
 
 /**
- * <b>Mapmenu est la classe repr�sentant le menu lors du jeu</b>
+ * <b>Mapmenu est la classe représentant le menu lors du jeu</b>
  */
 public class MapMenu extends JPanel implements ListSelectionListener {
 	
@@ -66,6 +66,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		listFile.add("exemple4x4.xml");
 		listFile.add("Map4x4-2.xml");
 		listFile.add("Map4x4.xml");
+		listFile.add("Map8x8.xml");
 		
 		list = new JList(listFile);
 		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -73,7 +74,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		list.setVisibleRowCount(-1);
 		list.addListSelectionListener(this);
 		JScrollPane listScroller = new JScrollPane(list);
-		listScroller.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
+		listScroller.setPreferredSize(new Dimension()); // Respect des contraintes, Ã©vite les problÃšmes de redimensionnement abusif   
 		this.add(listScroller, c);
 
 		/* Preview */
@@ -86,7 +87,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		preview = new JPanel(); 		
 		clPreview = new CardLayout();		
 		preview.setLayout(clPreview);
-		preview.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
+		preview.setPreferredSize(new Dimension()); // Respect des contraintes, Ã©vite les problÃšmes de redimensionnement abusif   
 		this.add(preview, c);
 
 		/* Option */
@@ -114,7 +115,7 @@ public class MapMenu extends JPanel implements ListSelectionListener {
 		jouer.addActionListener(new JouerBtnListener());
 		option.add(jouer);
 		
-		option.setPreferredSize(new Dimension()); // Respect des contraintes, évite les problèmes de redimensionnement abusif   
+		option.setPreferredSize(new Dimension()); // Respect des contraintes, Ã©vite les problÃšmes de redimensionnement abusif   
 		this.add(option, c);
 	}
 
