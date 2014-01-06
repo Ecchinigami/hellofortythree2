@@ -187,48 +187,49 @@ public class Renard extends Individu {
 		posyProie = 0;
 		for(i = 0 ; i < dimensionx ; i++){
 			for(j = 0 ; j < dimensiony ; j++){
-				if(i != ((dimensionx-1)/2) && j != ((dimensiony-1)/2)){
-					switch(individu){
-			            case "poule":
-			              if (portee[i][j] == "renard"){
-			            	System.out.println("Predateur++");
-			                predateur++;
-			                posxPre = i;
-			                posyPre = j;
-			              }
-			              if (portee[i][j] == "vipere"){
-			                proie++;
-			                posxProie = i;
-			                posyProie = j;
-			                System.out.println("Proie++");
-			              }
-			            case "renard":
-			              if (portee[i][j] == "vipere"){
-			                predateur++;
-			                posxPre = i;
-			                posyPre = j;
-			                System.out.println("Predateur++");
-			              }
-			              if (portee[i][j] == "poule"){
-			                proie++;
-			                posxProie = i;
-			                posyProie = j;
-			                System.out.println("Proie++");
-			              }
-			            case "vipere":
-			              if (portee[i][j] == "poule"){
-			                predateur++;
-			                posxPre = i;
-			                posyPre = j;
-			                System.out.println("Predateur++");
-			              }
-			              if (portee[i][j] == "renard"){
-			                proie++;
-			                posxProie = i;
-			                posyProie = j;
-			                System.out.println("Proie++");
-			              }
-		          }
+				switch(individu){
+	            case "poule":
+	              if (portee[i][j] == "renard"){
+	            	System.out.println("Predateur++");
+	                predateur++;
+	                posxPre = i;
+	                posyPre = j;
+	              }
+	              if (portee[i][j] == "vipere"){
+	                proie++;
+	                posxProie = i;
+	                posyProie = j;
+	                System.out.println("Proie++");
+	              }
+	              break;
+	            case "renard":
+	              if (portee[i][j] == "vipere"){
+	                predateur++;
+	                posxPre = i;
+	                posyPre = j;
+	                System.out.println("Predateur++");
+	              }
+	              if (portee[i][j] == "poule"){
+	                proie++;
+	                posxProie = i;
+	                posyProie = j;
+	                System.out.println("Proie++");
+	              }
+	              break;
+	            case "vipere":
+	              if (portee[i][j] == "poule"){
+	                predateur++;
+	                posxPre = i;
+	                posyPre = j;
+	                System.out.println("Predateur++");
+	              }
+	              if (portee[i][j] == "renard"){
+	                proie++;
+	                posxProie = i;
+	                posyProie = j;
+	                System.out.println("Proie++");
+	              }
+	              break;
 				}
 			}
 		}
