@@ -67,6 +67,7 @@ public class VieAble implements Runnable {
 			for (int j = 0; j < carte.getPlateau()[1].length; j++) {
 				if(carte.getPlateau()[i][j].getIndividu() != null) {
 					
+					// Action
 					if(individu < actionlist.size()) {
 						
 						// Direction
@@ -76,9 +77,7 @@ public class VieAble implements Runnable {
 									if(carte.getPlateau()[i+1][j].getIndividu()==null) {
 										if(carte.getPlateau()[i+1][j].getAccessible()) {
 											carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
-											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();										
+											carte.getPlateau()[i][j].setIndividu(null);									
 										}
 									}
 								}
@@ -89,8 +88,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i-1][j].getAccessible()) {
 											carte.getPlateau()[i-1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -101,8 +98,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i][j+1].getAccessible()) {
 											carte.getPlateau()[i][j+1].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -113,8 +108,6 @@ public class VieAble implements Runnable {
 										if(carte.getPlateau()[i][j-1].getAccessible()) {
 											carte.getPlateau()[i][j-1].setIndividu(carte.getPlateau()[i][j].getIndividu());
 											carte.getPlateau()[i][j].setIndividu(null);
-											
-											FenetreJeu.repaintGame();
 										}
 									}
 								}
@@ -122,8 +115,21 @@ public class VieAble implements Runnable {
 						}
 					}
 					
+					// Attaque
+					if(actionlist.get(individu).getAttaque() != null){
+						actionlist.get(individu).getAttaque().retireVie(carte.getPlateau()[i][j].getIndividu().getAttaque());
+					}
+					
+					// Règlage de LA MORT					
+					System.out.println("Vie :"+carte.getPlateau()[i][j].getIndividu().getVie());
+					if(carte.getPlateau()[i][j].getIndividu().getVie() <= 0){
+						carte.getPlateau()[i][j].setIndividu(null);
+					}
+					
 					individu++;
+					FenetreJeu.repaintGame();
 				}
+				
 			}
 		}
 	}
