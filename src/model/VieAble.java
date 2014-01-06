@@ -51,7 +51,7 @@ public class VieAble implements Runnable {
 			for (int j = 0; j < carte.getPlateau()[1].length; j++) {
 				if(carte.getPlateau()[i][j].getIndividu() != null) {
 
-					actionlist.add(carte.getPlateau()[i][j].getIndividu().live());
+					actionlist.add(carte.getPlateau()[i][j].getIndividu().live(carte, i, j));
 
 				}
 			}
@@ -68,17 +68,57 @@ public class VieAble implements Runnable {
 				if(carte.getPlateau()[i][j].getIndividu() != null) {
 					
 					if(individu < actionlist.size()) {
+						
+						// Direction
 						switch (actionlist.get(individu).getDirection()) {
 							case "bas":	
 								if(i<carte.getPlateau()[0].length-1) {
 									if(carte.getPlateau()[i+1][j].getIndividu()==null) {
-										carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
-										carte.getPlateau()[i][j].setIndividu(null);
-										
-										FenetreJeu.repaintGame();
+										if(carte.getPlateau()[i+1][j].getAccessible()) {
+											carte.getPlateau()[i+1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
+											carte.getPlateau()[i][j].setIndividu(null);
+											
+											FenetreJeu.repaintGame();										
+										}
 									}
 								}
-							break;
+								break;
+							case "haut":	
+								if(i>0) {
+									if(carte.getPlateau()[i-1][j].getIndividu()==null) {
+										if(carte.getPlateau()[i-1][j].getAccessible()) {
+											carte.getPlateau()[i-1][j].setIndividu(carte.getPlateau()[i][j].getIndividu());
+											carte.getPlateau()[i][j].setIndividu(null);
+											
+											FenetreJeu.repaintGame();
+										}
+									}
+								}
+								break;
+							case "droite":	
+								if(j<carte.getPlateau()[0].length-1) {
+									if(carte.getPlateau()[i][j+1].getIndividu()==null) {
+										if(carte.getPlateau()[i][j+1].getAccessible()) {
+											carte.getPlateau()[i][j+1].setIndividu(carte.getPlateau()[i][j].getIndividu());
+											carte.getPlateau()[i][j].setIndividu(null);
+											
+											FenetreJeu.repaintGame();
+										}
+									}
+								}
+								break;
+							case "gauche":	
+								if(j>0) {
+									if(carte.getPlateau()[i][j-1].getIndividu()==null) {
+										if(carte.getPlateau()[i][j-1].getAccessible()) {
+											carte.getPlateau()[i][j-1].setIndividu(carte.getPlateau()[i][j].getIndividu());
+											carte.getPlateau()[i][j].setIndividu(null);
+											
+											FenetreJeu.repaintGame();
+										}
+									}
+								}
+								break;
 						}
 					}
 					

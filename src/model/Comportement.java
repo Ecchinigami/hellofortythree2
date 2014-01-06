@@ -1,11 +1,11 @@
 package model;
 
 /**
- * <b>Comportement est la classe caractérisant le comportement des individus</b>
+ * <b>Comportement est la classe caractï¿½risant le comportement des individus</b>
  * <p>Cette classe se traduit donc par :
  * <ul>
  * <li>La perception de l'individu</li>
- * <li>Sa décision par rapport à ce qu'il a perçu</li>
+ * <li>Sa dï¿½cision par rapport ï¿½ ce qu'il a perï¿½u</li>
  * <li>et enfin, l'action que l'individu effectuera</li>
  * </ul>
  * </p>
@@ -15,15 +15,15 @@ public interface Comportement {
 	/**
 	 * L'individu prend conscience de l'environnement qui l'entoure
 	 */
-	void perception();
+	String[][] perception(Carte c, int posx, int posy);
     
 	/**
-	 * L'individu prend une décision
+	 * L'individu prend une dÃ©cision
 	 */
-    void decision();
+	String[] decision(String[][] portee);
     
     /**
-     * L'individu réalsie l'action dont il a décidé
+     * L'individu rÃ©alsie l'action dont il a dÃ©cidÃ©
      */
-    Action action(String direction, Individu attaque, Objet mange);
+    Action action(String[] direction);
 }
